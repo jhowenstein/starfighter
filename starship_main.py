@@ -19,6 +19,9 @@ DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT))
 DISPLAYSURF.fill(BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
+FPS = 30
+fpsClock = pygame.time.Clock()
+
 while True:
 
 	processInput()
@@ -26,3 +29,5 @@ while True:
 	updateGame()
 
 	pygame.display.update()
+	
+	fpsClock.tick(FPS)
