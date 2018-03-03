@@ -1,7 +1,9 @@
 import pygame, sys, math
 from pygame.locals import *
 from enum import IntEnum
-
+from starship_game_functions import *
+from starships import *
+from projectiles import *
 
 class Weapon(object):
 	def __init__(self):

@@ -1,6 +1,9 @@
 import pygame, sys, math
 from pygame.locals import *
 from enum import IntEnum
+from starships import *
+from weapons import *
+from projectiles import *
 
 
 
