@@ -13,7 +13,7 @@ game = Game()
 
 BLACK = (0, 0, 0)
 
-BG_COLOR = BLACK
+game.BG_COLOR = BLACK
 
 DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT))
 DISPLAYSURF.fill(BG_COLOR)

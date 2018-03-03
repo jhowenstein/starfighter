@@ -15,6 +15,8 @@ class Game(object):
 
 		self.WINDOWHEIGHT = 800
 		self.WINDOWWIDTH = 800
+		
+		self.BG_COLOR = (0, 0, 0) # Default = Black
 
 		self.userControl = controlType
 
@@ -57,6 +59,9 @@ def processInput(game):
 
 
 def updateGame(game):
+	
+	DISPLAYSURF.fill(game.BG_COLOR)
+	
 	i = 0
 	while (i < len(game.objectList)):
 		alive = objectList[i].update(game)

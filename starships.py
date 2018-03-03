@@ -96,7 +96,8 @@ class Ship(object):
 				fireWeaponA()
 			elif com = Command.SECONDARY:
 				fireWeaponB()
-
+		
+		DISPLAYSURF.blit(self.shipImg, (self.shipX, self.shipY))
 		return True
 
 
