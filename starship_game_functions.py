@@ -16,6 +16,8 @@ class Game(object):
 		self.WINDOWHEIGHT = 800
 		self.WINDOWWIDTH = 800
 		
+		self.DISPLAYSURF = 0 # Display surface to be initialize prior to game loop
+		
 		self.BG_COLOR = (0, 0, 0) # Default = Black
 
 		self.userControl = controlType
@@ -31,6 +33,21 @@ class Command(IntEnum):
 class Control(IntEnum):
 	Keyboard = 1
 	Controller = 2
+	
+class Ship(IntEnum):
+	Basic = 1
+	Light = 2
+	Heavy = 3
+
+'''	
+def createShip(game, shipType, location):
+	if shipType == Ship.Basic:
+		game.objectList.append(BasicShip(location[0],location[1]))
+	elif shipType == Ship.Light:
+		game.objectList.append(LightShip(location[0],location[1]))
+	elif shipType == Ship.Heavy:
+		game.objectList.append(HeavyShip(location[0],location[1]))
+'''
 
 
 def processInput(game):
@@ -60,11 +77,11 @@ def processInput(game):
 
 def updateGame(game):
 	
-	DISPLAYSURF.fill(game.BG_COLOR)
+	game.DISPLAYSURF.fill(game.BG_COLOR)
 	
 	i = 0
 	while (i < len(game.objectList)):
-		alive = objectList[i].update(game)
+		alive = game.objectList[i].update(game)
 		if alive == False:
 			game.garbageList.append(i)
 		i += 1

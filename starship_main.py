@@ -9,24 +9,27 @@ from projectiles import *
 
 
 pygame.init()
-game = Game()
+game = Game(Control.Keyboard)
 
 BLACK = (0, 0, 0)
 
 game.BG_COLOR = BLACK
 
-DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT))
-DISPLAYSURF.fill(BG_COLOR)
+game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT))
+game.DISPLAYSURF.fill(game.BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
 FPS = 30
 fpsClock = pygame.time.Clock()
 
+testShip = BasicShip(400,400)
+game.objectList.append(testShip)
+
 while True:
 
-	processInput()
+	processInput(game)
 
-	updateGame()
+	updateGame(game)
 
 	pygame.display.update()
 	

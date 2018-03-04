@@ -6,7 +6,7 @@ from starships import *
 from weapons import *
 
 
-class Projectile(Object):
+class Projectile(object):
 	def __init__(self, locX, locY, direction):
 		self.velocity = 0
 		self.damage = 0
@@ -29,7 +29,7 @@ class Projectile(Object):
 				
 		offset = round((self.width / 2) - .5)
 		adjX = self.locX - offset
-		pygame.draw.rect(DISPLAYSURF, self.color, (adjX, self.locY, self.width, self.height))
+		pygame.draw.rect(game.DISPLAYSURF, self.color, (adjX, self.locY, self.width, self.height))
 		return True
 				
 		

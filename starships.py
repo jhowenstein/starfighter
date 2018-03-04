@@ -5,7 +5,14 @@ from starship_game_functions import *
 from weapons import *
 from projectiles import *
 
-
+class Command(IntEnum):
+	UP = 1
+	DOWN = 2
+	LEFT = 3
+	RIGHT = 4
+	PRIMARY = 5
+	SECONDARY = 6
+	
 class Ship(object):
 	def __init__(self, initX, initY):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
@@ -19,11 +26,11 @@ class Ship(object):
 		self.weaponA = Weapon()
 		self.weaponB = Weapon()
 
-		self.weaponX = shipX + round(.5 * self.shipX)
-		self.weaponY = shipY
-
 		self.shipX = initX
 		self.shipY = initY
+		
+		self.weaponX = self.shipX + round(.5 * self.shipX)
+		self.weaponY = self.shipY
 
 		self.commandList = []
 
@@ -77,31 +84,30 @@ class Ship(object):
 		weapon.release(self.weaponX, self.weaponY)
 
 	def fireWeaponA(self):
-		fireWeapon(weaponA)
+		self.fireWeapon(self.weaponA)
 
 	def fireWeaponB(self):
-		fireWeapon(weaponB)
-
+		self.fireWeapon(self.weaponB)
+		
 	def update(self, game):
 		for com in game.commandList:
-			if com = Command.UP:
-				moveRight()
-			elif com = Command.DOWN:
-				moveDown()
-			elif com = Command.LEFT:
-				moveLeft()
-			elif com = Command.RIGHT:
-				moveRight()
-			elif com = Command.PRIMARY:
-				fireWeaponA()
-			elif com = Command.SECONDARY:
-				fireWeaponB()
+			if com == Command.UP:
+				self.moveUp()
+			elif com == Command.DOWN:
+				self.moveDown()
+			elif com == Command.LEFT:
+				self.moveLeft()
+			elif com == Command.RIGHT:
+				self.moveRight()
+			elif com == Command.PRIMARY:
+				self.fireWeaponA()
+			elif com == Command.SECONDARY:
+				self.fireWeaponB()
 		
-		DISPLAYSURF.blit(self.shipImg, (self.shipX, self.shipY))
+		game.DISPLAYSURF.blit(self.shipImg, (self.shipX, self.shipY))
 		return True
 
-
-class StandardShip(Ship):
+class BasicShip(Ship):
 	def __init__(self, initX, initY):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
@@ -114,11 +120,12 @@ class StandardShip(Ship):
 		self.weaponA = BasicCannon()
 		self.weaponB = Weapon()
 
-		self.weaponX = shipX + round(.5 * self.shipX)
-		self.weaponY = shipY
-
 		self.shipX = initX
 		self.shipY = initY
+		
+		self.weaponX = self.shipX + round(.5 * self.shipX)
+		self.weaponY = self.shipY
+
 
 class LightShip(Ship):
 	def __init__(self, initX, initY):
@@ -133,11 +140,11 @@ class LightShip(Ship):
 		self.weaponA = LightCannon()
 		self.weaponB = Weapon()
 
-		self.weaponX = shipX + round(.5 * self.shipX)
-		self.weaponY = shipY
-
 		self.shipX = initX
 		self.shipY = initY
+		
+		self.weaponX = self.shipX + round(.5 * self.shipX)
+		self.weaponY = self.shipY
 
 class HeavyShip(Ship):
 	def __init__(self, initX, initY):
@@ -152,8 +159,8 @@ class HeavyShip(Ship):
 		self.weaponA = HeavyCannon()
 		self.weaponB = Weapon()
 
-		self.weaponX = shipX + round(.5 * self.shipX)
-		self.weaponY = shipY
-
 		self.shipX = initX
 		self.shipY = initY
+		
+		self.weaponX = self.shipX + round(.5 * self.shipX)
+		self.weaponY = self.shipY
