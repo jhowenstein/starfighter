@@ -9,7 +9,7 @@ class Weapon(object):
 	def __init__(self):
 		self.fireRate = 5
 
-	def release(self, game, direction):
+	def release(self, locX, locY, direction, game):
 		pass
 		#n = len(game.objectList)
 		#game.objectList.append(Projectile(locX, locY, direction, n))
@@ -19,7 +19,7 @@ class BasicCannon(Weapon):
 	def __init__(self):
 		self.fireRate = 5
 
-	def release(self, game, direction):
+	def release(self, locX, locY, direction, game):
 		game.objectList.append(BasicProjectile(locX, locY, direction))
 
 
@@ -27,7 +27,7 @@ class LightCannon(Weapon):
 	def __init__(self):
 		self.fireRate = 7
 
-	def release(self, game, direction):
+	def release(self, locX, locY, direction, game):
 		game.objectList.append(LightProjectile(locX, locY, direction))
 
 
@@ -35,5 +35,5 @@ class HeavyCannon(Weapon):
 	def __init__(self):
 		self.fireRate = 3
 
-	def release(self, game, direction):
+	def release(self, locX, locY, direction, game):
 		game.objectList.append(HeavyProjectile(locX, locY, direction))

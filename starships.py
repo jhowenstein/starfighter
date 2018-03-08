@@ -28,6 +28,7 @@ class Ship(object):
 
 		self.shipX = initX
 		self.shipY = initY
+		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.weaponX = self.shipX + round(.5 * self.shipX)
 		self.weaponY = self.shipY
@@ -80,14 +81,14 @@ class Ship(object):
 		else:
 			self.shipY = HEIGHT - 1
 
-	def fireWeapon(self, weapon):
-		weapon.release(self.weaponX, self.weaponY)
+	def fireWeapon(self, weapon, game):
+		weapon.release(self.weaponX, self.weaponY, self.direction, game)
 
-	def fireWeaponA(self):
-		self.fireWeapon(self.weaponA)
+	def fireWeaponA(self, game):
+		self.fireWeapon(self.weaponA, game)
 
-	def fireWeaponB(self):
-		self.fireWeapon(self.weaponB)
+	def fireWeaponB(self, game):
+		self.fireWeapon(self.weaponB, game)
 		
 	def update(self, game):
 		for com in game.commandList:
@@ -100,9 +101,9 @@ class Ship(object):
 			elif com == Command.RIGHT:
 				self.moveRight()
 			elif com == Command.PRIMARY:
-				self.fireWeaponA()
+				self.fireWeaponA(game)
 			elif com == Command.SECONDARY:
-				self.fireWeaponB()
+				self.fireWeaponB(game)
 		
 		game.DISPLAYSURF.blit(self.shipImg, (self.shipX, self.shipY))
 		return True
@@ -122,6 +123,7 @@ class BasicShip(Ship):
 
 		self.shipX = initX
 		self.shipY = initY
+		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.weaponX = self.shipX + round(.5 * self.shipX)
 		self.weaponY = self.shipY
@@ -142,6 +144,7 @@ class LightShip(Ship):
 
 		self.shipX = initX
 		self.shipY = initY
+		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.weaponX = self.shipX + round(.5 * self.shipX)
 		self.weaponY = self.shipY
@@ -161,6 +164,7 @@ class HeavyShip(Ship):
 
 		self.shipX = initX
 		self.shipY = initY
+		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.weaponX = self.shipX + round(.5 * self.shipX)
 		self.weaponY = self.shipY
