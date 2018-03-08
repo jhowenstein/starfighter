@@ -18,6 +18,8 @@ class Ship(object):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
+		
+		self.halfWidth = round(self.width / 2)
 
 		self.speed = 5
 		self.armor = 5
@@ -29,9 +31,6 @@ class Ship(object):
 		self.shipX = initX
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
-		
-		self.weaponX = self.shipX + round(.5 * self.shipX)
-		self.weaponY = self.shipY
 
 		self.commandList = []
 
@@ -50,19 +49,19 @@ class Ship(object):
 	def moveLeft(self):
 		step = self.speed
 		lim = step - 1
-		if self.shipX > lim:
+		if (self.shipX - self.halfWidth)  > lim:
 			self.move('LEFT')
 		else:
-			self.shipX = 0
+			self.shipX = self.halfWidth
 
 	def moveRight(self):
 		WIDTH = 800
 		step = self.speed
 		lim = step - 1
-		if self.shipX + 100 < (WIDTH - 1 - lim):
+		if (self.shipX + self.halfWidth) < (WIDTH - 1 - lim):
 			self.move('RIGHT')
 		else:
-			self.shipX = WIDTH - 1
+			self.shipX = (WIDTH - 1) - self.halfWidth
 
 	def moveUp(self):
 		step = self.speed
@@ -76,13 +75,13 @@ class Ship(object):
 		HEIGHT = 800
 		step = self.speed
 		lim = step - 1
-		if self.shipY < (HEIGHT - 1 - lim):
+		if self.shipY < (HEIGHT - 1 - lim - self.height):
 			self.move('DOWN')
 		else:
-			self.shipY = HEIGHT - 1
+			self.shipY = HEIGHT - 1 - self.height
 
 	def fireWeapon(self, weapon, game):
-		weapon.release(self.weaponX, self.weaponY, self.direction, game)
+		weapon.release(self.shipX, self.shipY, self.direction, game)
 
 	def fireWeaponA(self, game):
 		self.fireWeapon(self.weaponA, game)
@@ -105,7 +104,8 @@ class Ship(object):
 			elif com == Command.SECONDARY:
 				self.fireWeaponB(game)
 		
-		game.DISPLAYSURF.blit(self.shipImg, (self.shipX, self.shipY))
+		rendX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
+		game.DISPLAYSURF.blit(self.shipImg, (rendX, self.shipY))
 		return True
 
 class BasicShip(Ship):
@@ -113,6 +113,8 @@ class BasicShip(Ship):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
+		
+		self.halfWidth = round(self.width / 2)
 
 		self.speed = 5
 		self.armor = 5
@@ -125,8 +127,6 @@ class BasicShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
-		self.weaponX = self.shipX + round(.5 * self.shipX)
-		self.weaponY = self.shipY
 
 
 class LightShip(Ship):
@@ -134,6 +134,8 @@ class LightShip(Ship):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
+		
+		self.halfWidth = round(self.width / 2)
 
 		self.speed = 7
 		self.armor = 3
@@ -146,14 +148,14 @@ class LightShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
-		self.weaponX = self.shipX + round(.5 * self.shipX)
-		self.weaponY = self.shipY
 
 class HeavyShip(Ship):
 	def __init__(self, initX, initY):
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
+		
+		self.halfWidth = round(self.width / 2)
 
 		self.speed = 3
 		self.armor = 7
@@ -166,5 +168,3 @@ class HeavyShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
-		self.weaponX = self.shipX + round(.5 * self.shipX)
-		self.weaponY = self.shipY
