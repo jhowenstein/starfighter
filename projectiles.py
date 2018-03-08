@@ -27,9 +27,9 @@ class Projectile(object):
 			if self.locY >= game.WINDOWHEIGHT:
 				return False
 				
-		offset = round((self.width / 2) - .5)
-		adjX = self.locX - offset
-		pygame.draw.rect(game.DISPLAYSURF, self.color, (adjX, self.locY, self.width, self.height))
+		offset = round((self.width / 2))
+		rendX = self.locX - offset - 1
+		pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX, self.locY, self.width, self.height))
 		return True
 				
 		
@@ -45,8 +45,8 @@ class BasicProjectile(Projectile):
 		self.locX = locX
 		self.locY = locY
 		
-		self.width = 3
-		self.height = 3
+		self.width = 4
+		self.height = 5
 
 class LightProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
@@ -59,8 +59,8 @@ class LightProjectile(Projectile):
 		self.locX = locX
 		self.locY = locY
 		
-		self.width = 1
-		self.height = 1
+		self.width = 2
+		self.height = 3
 
 class HeavyProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
@@ -73,5 +73,5 @@ class HeavyProjectile(Projectile):
 		self.locX = locX
 		self.locY = locY
 		
-		self.width = 5
-		self.height = 5
+		self.width = 6
+		self.height = 7

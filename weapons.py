@@ -7,7 +7,7 @@ from projectiles import *
 
 class Weapon(object):
 	def __init__(self):
-		self.fireRate = 5
+		self.cooldownTime = 10
 
 	def release(self, locX, locY, direction, game):
 		pass
@@ -17,7 +17,7 @@ class Weapon(object):
 
 class BasicCannon(Weapon):
 	def __init__(self):
-		self.fireRate = 5
+		self.cooldownTime = 10
 
 	def release(self, locX, locY, direction, game):
 		game.objectList.append(BasicProjectile(locX, locY, direction))
@@ -25,7 +25,7 @@ class BasicCannon(Weapon):
 
 class LightCannon(Weapon):
 	def __init__(self):
-		self.fireRate = 7
+		self.cooldownTime = 5
 
 	def release(self, locX, locY, direction, game):
 		game.objectList.append(LightProjectile(locX, locY, direction))
@@ -33,7 +33,7 @@ class LightCannon(Weapon):
 
 class HeavyCannon(Weapon):
 	def __init__(self):
-		self.fireRate = 3
+		self.cooldownTime = 20
 
 	def release(self, locX, locY, direction, game):
 		game.objectList.append(HeavyProjectile(locX, locY, direction))
