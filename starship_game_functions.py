@@ -4,24 +4,29 @@ from enum import IntEnum
 from starships import *
 from weapons import *
 from projectiles import *
+import numpy as np
 
 
 
 class Game(object):
 	def __init__(self, controlType):
 		self.objectList = []
-		self.garbageList = []
+		self.projectileList = []
+		self.objectGarbage = []
+		self.projectileGarbage = []
 		self.commandList = []
 
 		self.WINDOWHEIGHT = 800
 		self.WINDOWWIDTH = 800
+		
+		self.incidenceMap = np.zeros((self.WINDOWHEIGHT, self.WINDOWWIDTH))
 		
 		self.DISPLAYSURF = 0 # Display surface to be initialize prior to game loop
 		
 		self.BG_COLOR = (0, 0, 0) # Default = Black
 
 		self.userControl = controlType
-
+		self.userShip = None
 class Command(IntEnum):
 	UP = 1
 	DOWN = 2
@@ -78,17 +83,33 @@ def processInput(game):
 def updateGame(game):
 	
 	game.DISPLAYSURF.fill(game.BG_COLOR)
+	game.incidenceMap = np.zeros((game.WINDOWHEIGHT, game.WINDOWWIDTH))
 	
+	game.userShip.update(game, game.commandList)
+	
+	noCommands = []
 	i = 0
 	while (i < len(game.objectList)):
-		alive = game.objectList[i].update(game)
+		alive = game.objectList[i].update(game, noCommands)
 		if alive == False:
-			game.garbageList.append(i)
+			game.objectGarbage.append(i)
 		i += 1
 
-	if len(game.garbageList) > 0:
-		for entity in game.garbageList:
+	i = 0
+	while (i < len(game.projectileList)):
+		alive = game.projectileList[i].update(game)
+		if alive == False:
+			game.projectileGarbage.append(i)
+		i += 1
+		
+	if len(game.objectGarbage) > 0:
+		for entity in game.objectGarbage:
 			game.objectList.pop(entity)
 
+	if len(game.projectileGarbage) > 0:
+		for entity in game.projectileGarbage:
+			game.projectileList.pop(entity)
+			
 	game.commandList = []
-	game.garbageList = []
+	game.objectGarbage = []
+	game.projectileGarbage = []

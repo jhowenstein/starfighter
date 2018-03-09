@@ -4,6 +4,7 @@ from enum import IntEnum
 from starship_game_functions import *
 from weapons import *
 from projectiles import *
+import numpy as np
 
 class Command(IntEnum):
 	UP = 1
@@ -91,14 +92,14 @@ class Ship(object):
 	def fireWeaponB(self, game):
 		self.fireWeapon(self.weaponB, game)
 		
-	def update(self, game):
+	def update(self, game, commandList):
 		# Tracks cooldown of each weapon. Will likely move this into weapon object
 		if self.cooldownA < 100:
 			self.cooldownA += 1
 		if self.cooldownB < 100:
 			self.cooldownB += 1
 			
-		for com in game.commandList:
+		for com in commandList:
 			if com == Command.UP:
 				self.moveUp()
 			elif com == Command.DOWN:
@@ -116,8 +117,8 @@ class Ship(object):
 					self.fireWeaponB(game)
 					self.cooldownB = 0
 		
-		rendX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
-		game.DISPLAYSURF.blit(self.shipImg, (rendX, self.shipY))
+		adjX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
+		game.DISPLAYSURF.blit(self.shipImg, (adjX, self.shipY))
 		return True
 
 class BasicShip(Ship):
@@ -141,7 +142,6 @@ class BasicShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
-
 
 class LightShip(Ship):
 	def __init__(self, initX, initY):

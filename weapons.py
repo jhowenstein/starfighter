@@ -20,7 +20,7 @@ class BasicCannon(Weapon):
 		self.cooldownTime = 10
 
 	def release(self, locX, locY, direction, game):
-		game.objectList.append(BasicProjectile(locX, locY, direction))
+		game.projectileList.append(BasicProjectile(locX, locY, direction))
 
 
 class LightCannon(Weapon):
@@ -28,7 +28,7 @@ class LightCannon(Weapon):
 		self.cooldownTime = 5
 
 	def release(self, locX, locY, direction, game):
-		game.objectList.append(LightProjectile(locX, locY, direction))
+		game.projectileList.append(LightProjectile(locX, locY, direction))
 
 
 class HeavyCannon(Weapon):
@@ -36,4 +36,4 @@ class HeavyCannon(Weapon):
 		self.cooldownTime = 20
 
 	def release(self, locX, locY, direction, game):
-		game.objectList.append(HeavyProjectile(locX, locY, direction))
+		game.projectileList.append(HeavyProjectile(locX, locY, direction))
