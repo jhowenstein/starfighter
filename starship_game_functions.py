@@ -14,6 +14,7 @@ class Game(object):
 		self.projectileList = []
 		self.objectGarbage = []
 		self.projectileGarbage = []
+		self.impactList = []
 		#self.commandList = []
 
 		self.WINDOWHEIGHT = 800
@@ -90,6 +91,11 @@ def updateGame(game):
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	game.incidenceMap = np.zeros((game.WINDOWHEIGHT, game.WINDOWWIDTH))
 	
+	if len(game.impactList) > 0:
+		handleImpact(game)
+	
+	# Check that the players are still alive here
+	
 	statusPlayer1 = game.player1.update(game)
 	
 	#statusPlayer2 = game.player2.update(game)
@@ -118,3 +124,6 @@ def updateGame(game):
 
 	game.objectGarbage = []
 	game.projectileGarbage = []
+
+def handleImpact(game):
+	pass

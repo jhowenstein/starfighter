@@ -26,9 +26,18 @@ class Projectile(object):
 			self.locY += self.velocity
 			if self.locY >= game.WINDOWHEIGHT:
 				return False
-				
+		
 		offset = round((self.width / 2))
 		rendX = self.locX - offset - 1
+		
+		# Check for object contact
+		locationVal = game.incidenceMap[self.locY, self.locX]
+		if locationVal > 0:
+			game.impactList.append(ImpactObject(locationVal, self.damage))
+			self.color = (255, 0 , 0)
+			pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX - offset, self.locY - offset, self.width * 2, self.height * 2))
+			return False
+			
 		pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX, self.locY, self.width, self.height))
 		return True
 				
@@ -75,3 +84,8 @@ class HeavyProjectile(Projectile):
 		
 		self.width = 6
 		self.height = 7
+		
+class ImpactObject(object):
+	def __init__(self, locID, damage):
+		self.locID = locID
+		self.damage = damage

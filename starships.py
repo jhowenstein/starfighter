@@ -15,7 +15,8 @@ class Command(IntEnum):
 	SECONDARY = 6
 	
 class Ship(object):
-	def __init__(self, initX, initY):
+	def __init__(self, shipID, initX, initY):
+		self.shipID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
@@ -36,6 +37,7 @@ class Ship(object):
 		self.direction = 0 # Upward: 0, Downward: 1
 
 		self.commandList = []
+		self.damageList = []
 
 
 	def move(self, direction):
@@ -83,6 +85,9 @@ class Ship(object):
 		else:
 			self.shipY = HEIGHT - 1 - self.height
 
+	def flipImage(self):
+		self.shipImg = pygame.transform.flip(self.shipImg, False, True)
+		
 	def fireWeapon(self, weapon, game):
 		weapon.release(self.shipX, self.shipY, self.direction, game)
 
@@ -91,6 +96,9 @@ class Ship(object):
 
 	def fireWeaponB(self, game):
 		self.fireWeapon(self.weaponB, game)
+		
+	def handleDamage(self):
+		pass
 		
 	def update(self, game):
 		# Tracks cooldown of each weapon. Will likely move this into weapon object
@@ -119,6 +127,8 @@ class Ship(object):
 		
 		adjX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
 		game.DISPLAYSURF.blit(self.shipImg, (adjX, self.shipY))
+		
+		game.incidenceMap[self.shipY:(self.shipY + self.height),adjX:(adjX + self.width)] = shipID
 		
 		self.commandList = []
 		return True
