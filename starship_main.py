@@ -22,9 +22,9 @@ pygame.display.set_caption('Starship PvP')
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-game.userShip = BasicShip(400,400)
-#game.userShip = LightShip(400,400)
-#game.userShip = HeavyShip(400,400)
+game.player1 = BasicShip(400,400)
+#game.player1 = LightShip(400,400)
+#game.player1 = HeavyShip(400,400)
 
 
 while True:

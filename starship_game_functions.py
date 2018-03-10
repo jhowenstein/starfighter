@@ -14,7 +14,7 @@ class Game(object):
 		self.projectileList = []
 		self.objectGarbage = []
 		self.projectileGarbage = []
-		self.commandList = []
+		#self.commandList = []
 
 		self.WINDOWHEIGHT = 800
 		self.WINDOWWIDTH = 800
@@ -26,7 +26,11 @@ class Game(object):
 		self.BG_COLOR = (0, 0, 0) # Default = Black
 
 		self.userControl = controlType
-		self.userShip = None
+		
+		self.player1 = None
+		self.player2 = None
+		
+		
 class Command(IntEnum):
 	UP = 1
 	DOWN = 2
@@ -56,6 +60,7 @@ def createShip(game, shipType, location):
 
 
 def processInput(game):
+	# Process input player 1
 	if game.userControl == Control.Keyboard:
 		for event in pygame.event.get():
 			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
@@ -63,17 +68,17 @@ def processInput(game):
 				sys.exit()
 			elif event.type == KEYUP:
 				if event.key == K_UP:
-					game.commandList.append(Command.UP)
+					game.player1.commandList.append(Command.UP)
 				elif event.key == K_DOWN:
-					game.commandList.append(Command.DOWN)
+					game.player1.commandList.append(Command.DOWN)
 				elif event.key == K_LEFT:
-					game.commandList.append(Command.LEFT)
+					game.player1.commandList.append(Command.LEFT)
 				elif event.key == K_RIGHT:
-					game.commandList.append(Command.RIGHT)
+					game.player1.commandList.append(Command.RIGHT)
 				elif event.key == K_SPACE:
-					game.commandList.append(Command.PRIMARY)
+					game.player1.commandList.append(Command.PRIMARY)
 				elif event.key == K_x:
-					game.commandList.append(Command.SECONDARY)
+					game.player1.commandList.append(Command.SECONDARY)
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
@@ -85,12 +90,13 @@ def updateGame(game):
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	game.incidenceMap = np.zeros((game.WINDOWHEIGHT, game.WINDOWWIDTH))
 	
-	game.userShip.update(game, game.commandList)
+	statusPlayer1 = game.player1.update(game)
 	
-	noCommands = []
+	#statusPlayer2 = game.player2.update(game)
+	
 	i = 0
 	while (i < len(game.objectList)):
-		alive = game.objectList[i].update(game, noCommands)
+		alive = game.objectList[i].update(game)
 		if alive == False:
 			game.objectGarbage.append(i)
 		i += 1
@@ -109,7 +115,6 @@ def updateGame(game):
 	if len(game.projectileGarbage) > 0:
 		for entity in game.projectileGarbage:
 			game.projectileList.pop(entity)
-			
-	game.commandList = []
+
 	game.objectGarbage = []
 	game.projectileGarbage = []

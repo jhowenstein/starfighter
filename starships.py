@@ -92,14 +92,14 @@ class Ship(object):
 	def fireWeaponB(self, game):
 		self.fireWeapon(self.weaponB, game)
 		
-	def update(self, game, commandList):
+	def update(self, game):
 		# Tracks cooldown of each weapon. Will likely move this into weapon object
 		if self.cooldownA < 100:
 			self.cooldownA += 1
 		if self.cooldownB < 100:
 			self.cooldownB += 1
 			
-		for com in commandList:
+		for com in self.commandList:
 			if com == Command.UP:
 				self.moveUp()
 			elif com == Command.DOWN:
@@ -119,6 +119,8 @@ class Ship(object):
 		
 		adjX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
 		game.DISPLAYSURF.blit(self.shipImg, (adjX, self.shipY))
+		
+		self.commandList = []
 		return True
 
 class BasicShip(Ship):
@@ -142,6 +144,8 @@ class BasicShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
+		self.commandList = []
+		
 
 class LightShip(Ship):
 	def __init__(self, initX, initY):
@@ -164,6 +168,8 @@ class LightShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
+		self.commandList = []
+		
 
 class HeavyShip(Ship):
 	def __init__(self, initX, initY):
@@ -185,4 +191,6 @@ class HeavyShip(Ship):
 		self.shipX = initX
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
+		
+		self.commandList = []
 		
