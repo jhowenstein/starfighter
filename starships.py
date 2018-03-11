@@ -15,7 +15,7 @@ class Command(IntEnum):
 	SECONDARY = 6
 	
 class Ship(object):
-	def __init__(self, shipID, initX, initY):
+	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
@@ -35,6 +35,13 @@ class Ship(object):
 		self.shipX = initX
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
+		
+		if self.ID == 1:
+			self.topLim = game.WINDOWHEIGHT * .75
+			self.bottomLim = game.WINDOWHEIGHT
+		elif self.ID > 1:
+			self.topLim = 0
+			self.bottomLim = game.WINDOWHEIGHT * .25
 
 		self.commandList = []
 		self.damageList = []
@@ -71,13 +78,14 @@ class Ship(object):
 	def moveUp(self, game):
 		step = self.speed
 		lim = step - 1
-		if self.shipY > lim:
+		if self.shipY > (self.topLim + lim):
 			self.move('UP')
 		else:
-			self.shipY = 0
+			self.shipY = self.topLim
 
 	def moveDown(self, game):
-		HEIGHT = game.WINDOWHEIGHT
+		#HEIGHT = game.WINDOWHEIGHT
+		HEIGHT = self.bottomLim
 		step = self.speed
 		lim = step - 1
 		if self.shipY < (HEIGHT - 1 - lim - self.height):
@@ -170,6 +178,13 @@ class BasicShip(Ship):
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
 		
+		if self.ID == 1:
+			self.topLim = game.WINDOWHEIGHT * .75
+			self.bottomLim = game.WINDOWHEIGHT
+		elif self.ID > 1:
+			self.topLim = 0
+			self.bottomLim = game.WINDOWHEIGHT * .25
+			
 		self.commandList = []
 		self.damageList = []
 		
@@ -195,7 +210,14 @@ class LightShip(Ship):
 		self.shipX = initX
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
-		
+
+		if self.ID == 1:
+			self.topLim = game.WINDOWHEIGHT * .75
+			self.bottomLim = game.WINDOWHEIGHT
+		elif self.ID > 1:
+			self.topLim = 0
+			self.bottomLim = game.WINDOWHEIGHT * .25
+					
 		self.commandList = []
 		self.damageList = []
 		
@@ -221,7 +243,14 @@ class HeavyShip(Ship):
 		self.shipX = initX
 		self.shipY = initY
 		self.direction = 0 # Upward: 0, Downward: 1
-		
+
+		if self.ID == 1:
+			self.topLim = game.WINDOWHEIGHT * .75
+			self.bottomLim = game.WINDOWHEIGHT
+		elif self.ID > 1:
+			self.topLim = 0
+			self.bottomLim = game.WINDOWHEIGHT * .25
+					
 		self.commandList = []
 		self.damageList = []
 		
