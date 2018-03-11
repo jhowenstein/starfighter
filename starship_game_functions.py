@@ -31,6 +31,9 @@ class Game(object):
 		self.player1 = None
 		self.player2 = None
 		
+		self.keyDown = np.zeros(6)
+		self.keyUp = np.zeros(6)
+		
 		
 class Command(IntEnum):
 	UP = 1
@@ -71,27 +74,59 @@ def processInput(game):
 				sys.exit()
 			elif event.type == KEYDOWN:
 				if event.key == K_UP:
-					game.player1.commandList.append(Command.UP)
-					#UP_PRESSED = True
+					game.keyDown[0] = 1
+					#game.player1.commandList.append(Command.UP)
 				elif event.key == K_DOWN:
-					game.player1.commandList.append(Command.DOWN)
-					#DOWN_PRESSED = True
+					game.keyDown[1] = 1
+					#game.player1.commandList.append(Command.DOWN)
 				elif event.key == K_LEFT:
-					game.player1.commandList.append(Command.LEFT)
-					#LEFT_PRESSED = True
+					game.keyDown[2] = 1
+					#game.player1.commandList.append(Command.LEFT)
 				elif event.key == K_RIGHT:
-					game.player1.commandList.append(Command.RIGHT)
-					#RIGHT_PRESSED = True
+					game.keyDown[3] = 1
+					#game.player1.commandList.append(Command.RIGHT)
 				elif event.key == K_SPACE:
-					game.player1.commandList.append(Command.PRIMARY)
+					game.keyDown[4] = 1
+					#game.player1.commandList.append(Command.PRIMARY)
 				elif event.key == K_x:
-					game.player1.commandList.append(Command.SECONDARY)
-		
-			
+					game.keyDown[5] = 1
+					#game.player1.commandList.append(Command.SECONDARY)
+			elif event.type == KEYUP:
+				if event.key == K_UP:
+					game.keyUp[0] = 1
+				elif event.key == K_DOWN:
+					game.keyUp[1] = 1
+				elif event.key == K_LEFT:
+					game.keyUp[2] = 1
+				elif event.key == K_RIGHT:
+					game.keyUp[3] = 1
+				elif event.key == K_SPACE:
+					game.keyUp[4] = 1
+				elif event.key == K_x:
+					game.keyUp[5] = 1	
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
 		sys.exit()
+		
+	if game.keyDown[0]:
+		game.player1.commandList.append(Command.UP)
+	if game.keyDown[1]:
+		game.player1.commandList.append(Command.DOWN)
+	if game.keyDown[2]:
+		game.player1.commandList.append(Command.LEFT)
+	if game.keyDown[3]:
+		game.player1.commandList.append(Command.RIGHT)
+	if game.keyDown[4]:
+		game.player1.commandList.append(Command.PRIMARY)
+	if game.keyDown[5]:
+		game.player1.commandList.append(Command.SECONDARY)
+		
+	for i in range(game.keyDown.size):
+		if game.keyUp[i] == 1:
+			game.keyDown[i] = 0
+			
+	game.keyUp = np.zeros(6)
 
 
 def updateGame(game):
