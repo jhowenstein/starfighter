@@ -18,8 +18,8 @@ class Ship(object):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
-		self.width = 100
-		self.height = 68
+		self.width = self.shipImg.get_width()
+		self.height = self.shipImg.get_height()
 		
 		self.halfWidth = round(self.width / 2)
 
@@ -160,8 +160,8 @@ class BasicShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
-		self.width = 100
-		self.height = 68
+		self.width = self.shipImg.get_width()
+		self.height = self.shipImg.get_height()
 		
 		self.halfWidth = round(self.width / 2)
 
@@ -193,8 +193,8 @@ class LightShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
-		self.width = 100
-		self.height = 68
+		self.width = self.shipImg.get_width()
+		self.height = self.shipImg.get_height()
 		
 		self.halfWidth = round(self.width / 2)
 
@@ -226,8 +226,8 @@ class HeavyShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
-		self.width = 100
-		self.height = 68
+		self.width = self.shipImg.get_width()
+		self.height = self.shipImg.get_height()
 		
 		self.halfWidth = round(self.width / 2)
 

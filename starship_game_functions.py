@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, time
 from pygame.locals import *
 from enum import IntEnum
 from starships import *
@@ -36,6 +36,8 @@ class Game(object):
 		self.BG_COLOR = (0, 0, 0) # Default = Black
 
 		self.userControl = Control.Keyboard
+		
+		self.endCondition = 0
 		
 		#self.keyDown = np.zeros(6)
 		#self.keyUp = np.zeros(6)
@@ -200,17 +202,65 @@ def gameStatus(game):
 	#print(len(game.objectList))
 	if game.numberPlayers == 1:
 		if game.player1.status == False:
+			game.endCondition = -1
 			return False
 		elif len(game.objectList) == 0:
+			game.endCondition = 1
 			return False
 	elif game.numberPlayers == 2:
 		if game.player1.status == False and game.player2.status == False:
+			game.endCondition = -1 # Should be own error code
 			return False
 		elif game.player1.status == False:
+			game.endCondition = 2
 			return False
 		elif game.player2.status == False:
+			game.endCondition = 1
 			return False
 			
 	return True
+	
+def finalScreen(game):
+	if game.endCondition == -1:
+		# Game Over
+		game.DISPLAYSURF.fill(game.BG_COLOR)
+		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		textSurfaceObj = fontObj.render('GAME OVER!', True, (255,255,255))
+		textRectObj = textSurfaceObj.get_rect()
+		textRectObj.center = (500,300)
+		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+		pygame.display.update()
+		time.sleep(5)
+	elif game.endCondition == 1:
+		# Player 1 Wins
+		game.DISPLAYSURF.fill(game.BG_COLOR)
+		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		textSurfaceObj = fontObj.render('PLAYER 1 WINS!', True, (255,255,255))
+		textRectObj = textSurfaceObj.get_rect()
+		textRectObj.center = (500,300)
+		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+		pygame.display.update()
+		time.sleep(5)
+	elif game.endCondition == 2:
+		# Player 2 Wins
+		game.DISPLAYSURF.fill(game.BG_COLOR)
+		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		textSurfaceObj = fontObj.render('PLAYER 2 WINS!', True, (255,255,255))
+		textRectObj = textSurfaceObj.get_rect()
+		textRectObj.center = (500,300)
+		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+		pygame.display.update()
+		time.sleep(5)
+	elif game.endCondition == 0:
+		# Error! Unexpected Game Exit
+		game.DISPLAYSURF.fill(game.BG_COLOR)
+		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		textSurfaceObj = fontObj.render('Error. Unexpected Game Exit', True, (255,255,255))
+		textRectObj = textSurfaceObj.get_rect()
+		textRectObj.center = (500,300)
+		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+		pygame.display.update()
+		time.sleep(5)
+	
 			
 				

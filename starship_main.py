@@ -43,6 +43,7 @@ while game.status == True:
 	
 	fpsClock.tick(FPS)
 
+finalScreen(game)
 
 pygame.quit()
 sys.exit()

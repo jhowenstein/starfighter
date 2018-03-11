@@ -46,7 +46,7 @@ class Projectile(object):
 class BasicProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
 		self.velocity = 5
-		self.damage = 5
+		self.damage = 10
 		self.direction = direction
 
 		self.color = (255, 255, 255) # white default
@@ -60,7 +60,7 @@ class BasicProjectile(Projectile):
 class LightProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
 		self.velocity = 7
-		self.damage = 3
+		self.damage = 5
 		self.direction = direction
 
 		self.color = (255, 255, 255) # white default
@@ -74,7 +74,7 @@ class LightProjectile(Projectile):
 class HeavyProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
 		self.velocity = 3
-		self.damage = 7
+		self.damage = 20
 		self.direction = direction
 
 		self.color = (255, 255, 255) # white default
