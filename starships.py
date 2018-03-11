@@ -16,7 +16,7 @@ class Command(IntEnum):
 	
 class Ship(object):
 	def __init__(self, shipID, initX, initY):
-		self.shipID = shipID
+		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
@@ -51,7 +51,7 @@ class Ship(object):
 		elif direction == 'DOWN':
 			self.shipY += step
 
-	def moveLeft(self):
+	def moveLeft(self, game):
 		step = self.speed
 		lim = step - 1
 		if (self.shipX - self.halfWidth)  > lim:
@@ -59,8 +59,8 @@ class Ship(object):
 		else:
 			self.shipX = self.halfWidth
 
-	def moveRight(self):
-		WIDTH = 800
+	def moveRight(self, game):
+		WIDTH = game.WINDOWWIDTH
 		step = self.speed
 		lim = step - 1
 		if (self.shipX + self.halfWidth) < (WIDTH - 1 - lim):
@@ -68,7 +68,7 @@ class Ship(object):
 		else:
 			self.shipX = (WIDTH - 1) - self.halfWidth
 
-	def moveUp(self):
+	def moveUp(self, game):
 		step = self.speed
 		lim = step - 1
 		if self.shipY > lim:
@@ -76,8 +76,8 @@ class Ship(object):
 		else:
 			self.shipY = 0
 
-	def moveDown(self):
-		HEIGHT = 800
+	def moveDown(self, game):
+		HEIGHT = game.WINDOWHEIGHT
 		step = self.speed
 		lim = step - 1
 		if self.shipY < (HEIGHT - 1 - lim - self.height):
@@ -98,9 +98,24 @@ class Ship(object):
 		self.fireWeapon(self.weaponB, game)
 		
 	def handleDamage(self):
-		pass
+		for damage in self.damageList:
+			self.health -= damage
+			
+		self.damageList = []
+		
+		if self.health <= 0:
+			return False
+		else:
+			return True
+			
 		
 	def update(self, game):
+		# Handle damage from any projectile impacts
+		if len(self.damageList) > 0:
+			shipStatus = self.handleDamage()
+			if shipStatus == False:
+				return False
+			
 		# Tracks cooldown of each weapon. Will likely move this into weapon object
 		if self.cooldownA < 100:
 			self.cooldownA += 1
@@ -109,13 +124,13 @@ class Ship(object):
 			
 		for com in self.commandList:
 			if com == Command.UP:
-				self.moveUp()
+				self.moveUp(game)
 			elif com == Command.DOWN:
-				self.moveDown()
+				self.moveDown(game)
 			elif com == Command.LEFT:
-				self.moveLeft()
+				self.moveLeft(game)
 			elif com == Command.RIGHT:
-				self.moveRight()
+				self.moveRight(game)
 			elif com == Command.PRIMARY:
 				if self.cooldownA >= self.weaponA.cooldownTime:
 					self.fireWeaponA(game)
@@ -128,13 +143,14 @@ class Ship(object):
 		adjX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
 		game.DISPLAYSURF.blit(self.shipImg, (adjX, self.shipY))
 		
-		game.incidenceMap[self.shipY:(self.shipY + self.height),adjX:(adjX + self.width)] = shipID
+		game.incidenceMap[self.shipY:(self.shipY + self.height),adjX:(adjX + self.width)] = self.ID
 		
 		self.commandList = []
 		return True
 
 class BasicShip(Ship):
-	def __init__(self, initX, initY):
+	def __init__(self, shipID, initX, initY, game):
+		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
@@ -155,10 +171,12 @@ class BasicShip(Ship):
 		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.commandList = []
+		self.damageList = []
 		
 
 class LightShip(Ship):
-	def __init__(self, initX, initY):
+	def __init__(self, shipID, initX, initY, game):
+		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
@@ -179,10 +197,12 @@ class LightShip(Ship):
 		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.commandList = []
+		self.damageList = []
 		
 
 class HeavyShip(Ship):
-	def __init__(self, initX, initY):
+	def __init__(self, shipID, initX, initY, game):
+		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = 100
 		self.height = 68
@@ -203,4 +223,5 @@ class HeavyShip(Ship):
 		self.direction = 0 # Upward: 0, Downward: 1
 		
 		self.commandList = []
+		self.damageList = []
 		

@@ -17,8 +17,8 @@ class Game(object):
 		self.impactList = []
 		#self.commandList = []
 
-		self.WINDOWHEIGHT = 800
-		self.WINDOWWIDTH = 800
+		self.WINDOWHEIGHT = 600
+		self.WINDOWWIDTH = 1000
 		
 		self.incidenceMap = np.zeros((self.WINDOWHEIGHT, self.WINDOWWIDTH))
 		
@@ -62,24 +62,32 @@ def createShip(game, shipType, location):
 
 def processInput(game):
 	# Process input player 1
+	
 	if game.userControl == Control.Keyboard:
-		for event in pygame.event.get():
+		eventList = pygame.event.get()
+		for event in eventList:
 			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
 				pygame.quit()
 				sys.exit()
-			elif event.type == KEYUP:
+			elif event.type == KEYDOWN:
 				if event.key == K_UP:
 					game.player1.commandList.append(Command.UP)
+					#UP_PRESSED = True
 				elif event.key == K_DOWN:
 					game.player1.commandList.append(Command.DOWN)
+					#DOWN_PRESSED = True
 				elif event.key == K_LEFT:
 					game.player1.commandList.append(Command.LEFT)
+					#LEFT_PRESSED = True
 				elif event.key == K_RIGHT:
 					game.player1.commandList.append(Command.RIGHT)
+					#RIGHT_PRESSED = True
 				elif event.key == K_SPACE:
 					game.player1.commandList.append(Command.PRIMARY)
 				elif event.key == K_x:
 					game.player1.commandList.append(Command.SECONDARY)
+		
+			
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
@@ -126,4 +134,15 @@ def updateGame(game):
 	game.projectileGarbage = []
 
 def handleImpact(game):
-	pass
+	for impact in game.impactList:
+		if impact.locID == 1:
+			game.player1.damageList.append(impact.damage)
+		elif impact.locID == 2:
+			game.player2.damageList.append(impact.damage)
+		else:
+			for entity in game.objectList:
+				if entity.ID == impact.locID:
+					entity.damageList.append(impact.damage)
+	
+	game.impactList = []
+				
