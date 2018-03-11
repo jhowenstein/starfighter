@@ -9,13 +9,22 @@ import numpy as np
 
 
 class Game(object):
-	def __init__(self, controlType):
+	def __init__(self, numberPlayers):
+		self.status = True # Defines whether the game is currenty active and valid
+		self.numberPlayers = numberPlayers
+		
 		self.objectList = []
 		self.projectileList = []
 		self.objectGarbage = []
 		self.projectileGarbage = []
 		self.impactList = []
 		#self.commandList = []
+		
+		if self.numberPlayers == 1:
+			self.player1 = Player("Player One")
+		elif self.numberPlayers == 2:
+			self.player1 = Player("Player One")
+			self.player2 = Player("Player Two")
 
 		self.WINDOWHEIGHT = 600
 		self.WINDOWWIDTH = 1000
@@ -26,10 +35,16 @@ class Game(object):
 		
 		self.BG_COLOR = (0, 0, 0) # Default = Black
 
-		self.userControl = controlType
+		self.userControl = Control.Keyboard
 		
-		self.player1 = None
-		self.player2 = None
+		#self.keyDown = np.zeros(6)
+		#self.keyUp = np.zeros(6)
+		
+class Player(object):
+	def __init__(self, name):
+		self.name = name
+		self.ship = None
+		self.status = True
 		
 		self.keyDown = np.zeros(6)
 		self.keyUp = np.zeros(6)
@@ -74,59 +89,59 @@ def processInput(game):
 				sys.exit()
 			elif event.type == KEYDOWN:
 				if event.key == K_UP:
-					game.keyDown[0] = 1
+					game.player1.keyDown[0] = 1
 					#game.player1.commandList.append(Command.UP)
 				elif event.key == K_DOWN:
-					game.keyDown[1] = 1
+					game.player1.keyDown[1] = 1
 					#game.player1.commandList.append(Command.DOWN)
 				elif event.key == K_LEFT:
-					game.keyDown[2] = 1
+					game.player1.keyDown[2] = 1
 					#game.player1.commandList.append(Command.LEFT)
 				elif event.key == K_RIGHT:
-					game.keyDown[3] = 1
+					game.player1.keyDown[3] = 1
 					#game.player1.commandList.append(Command.RIGHT)
 				elif event.key == K_SPACE:
-					game.keyDown[4] = 1
+					game.player1.keyDown[4] = 1
 					#game.player1.commandList.append(Command.PRIMARY)
 				elif event.key == K_x:
-					game.keyDown[5] = 1
+					game.player1.keyDown[5] = 1
 					#game.player1.commandList.append(Command.SECONDARY)
 			elif event.type == KEYUP:
 				if event.key == K_UP:
-					game.keyUp[0] = 1
+					game.player1.keyUp[0] = 1
 				elif event.key == K_DOWN:
-					game.keyUp[1] = 1
+					game.player1.keyUp[1] = 1
 				elif event.key == K_LEFT:
-					game.keyUp[2] = 1
+					game.player1.keyUp[2] = 1
 				elif event.key == K_RIGHT:
-					game.keyUp[3] = 1
+					game.player1.keyUp[3] = 1
 				elif event.key == K_SPACE:
-					game.keyUp[4] = 1
+					game.player1.keyUp[4] = 1
 				elif event.key == K_x:
-					game.keyUp[5] = 1	
+					game.player1.keyUp[5] = 1	
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
 		sys.exit()
 		
-	if game.keyDown[0]:
-		game.player1.commandList.append(Command.UP)
-	if game.keyDown[1]:
-		game.player1.commandList.append(Command.DOWN)
-	if game.keyDown[2]:
-		game.player1.commandList.append(Command.LEFT)
-	if game.keyDown[3]:
-		game.player1.commandList.append(Command.RIGHT)
-	if game.keyDown[4]:
-		game.player1.commandList.append(Command.PRIMARY)
-	if game.keyDown[5]:
-		game.player1.commandList.append(Command.SECONDARY)
+	if game.player1.keyDown[0]:
+		game.player1.ship.commandList.append(Command.UP)
+	if game.player1.keyDown[1]:
+		game.player1.ship.commandList.append(Command.DOWN)
+	if game.player1.keyDown[2]:
+		game.player1.ship.commandList.append(Command.LEFT)
+	if game.player1.keyDown[3]:
+		game.player1.ship.commandList.append(Command.RIGHT)
+	if game.player1.keyDown[4]:
+		game.player1.ship.commandList.append(Command.PRIMARY)
+	if game.player1.keyDown[5]:
+		game.player1.ship.commandList.append(Command.SECONDARY)
 		
-	for i in range(game.keyDown.size):
-		if game.keyUp[i] == 1:
-			game.keyDown[i] = 0
+	for i in range(game.player1.keyDown.size):
+		if game.player1.keyUp[i] == 1:
+			game.player1.keyDown[i] = 0
 			
-	game.keyUp = np.zeros(6)
+	game.player1.keyUp = np.zeros(6)
 
 
 def updateGame(game):
@@ -137,11 +152,9 @@ def updateGame(game):
 	if len(game.impactList) > 0:
 		handleImpact(game)
 	
-	# Check that the players are still alive here
+	statusPlayer1 = game.player1.ship.update(game)
 	
-	statusPlayer1 = game.player1.update(game)
-	
-	#statusPlayer2 = game.player2.update(game)
+	#statusPlayer2 = game.player2.ship.update(game)
 	
 	i = 0
 	while (i < len(game.objectList)):
@@ -167,6 +180,8 @@ def updateGame(game):
 
 	game.objectGarbage = []
 	game.projectileGarbage = []
+	
+	game.status = gameStatus(game)
 
 def handleImpact(game):
 	for impact in game.impactList:
@@ -180,4 +195,22 @@ def handleImpact(game):
 					entity.damageList.append(impact.damage)
 	
 	game.impactList = []
+	
+def gameStatus(game):
+	#print(len(game.objectList))
+	if game.numberPlayers == 1:
+		if game.player1.status == False:
+			return False
+		elif len(game.objectList) == 0:
+			return False
+	elif game.numberPlayers == 2:
+		if game.player1.status == False and game.player2.status == False:
+			return False
+		elif game.player1.status == False:
+			return False
+		elif game.player2.status == False:
+			return False
+			
+	return True
+			
 				

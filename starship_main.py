@@ -9,7 +9,10 @@ from projectiles import *
 
 
 pygame.init()
-game = Game(Control.Keyboard)
+
+numberPlayers = 1
+
+game = Game(numberPlayers)
 
 BLACK = (0, 0, 0)
 
@@ -22,15 +25,15 @@ pygame.display.set_caption('Starship PvP')
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-game.player1 = BasicShip(1,500,500,game)
-#game.player1 = LightShip(1,500,500,game)
-#game.player1 = HeavyShip(1,500,500,game)
+game.player1.ship = BasicShip(1,500,500,game)
+#game.player1.ship = LightShip(1,500,500,game)
+#game.player1.ship = HeavyShip(1,500,500,game)
 
 game.objectList.append(BasicShip(3, 500,32,game))
 game.objectList[0].flipImage()
 
 
-while True:
+while game.status == True:
 
 	processInput(game)
 
@@ -39,3 +42,7 @@ while True:
 	pygame.display.update()
 	
 	fpsClock.tick(FPS)
+
+
+pygame.quit()
+sys.exit()
