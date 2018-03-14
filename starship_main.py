@@ -5,7 +5,7 @@ from starship_game_functions import *
 from starships import *
 from weapons import *
 from projectiles import *
-
+from levels import *
 
 
 pygame.init()
@@ -25,13 +25,13 @@ pygame.display.set_caption('Starship PvP')
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-game.player1.ship = BasicShip(1,500,500,game)
+#game.player1.ship = BasicShip(1,500,500,game)
 #game.player1.ship = LightShip(1,500,500,game)
-#game.player1.ship = HeavyShip(1,500,500,game)
+game.player1.ship = HeavyShip(1,500,500,game)
 
-game.objectList.append(BasicShip(3, 500,32,game))
-game.objectList[0].flipImage()
-
+#game.objectList.append(BasicShip(3, 500,32,game))
+#game.objectList[0].flipImage()
+level_1(game)
 
 while game.status == True:
 
