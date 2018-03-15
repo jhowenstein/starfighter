@@ -29,9 +29,8 @@ fpsClock = pygame.time.Clock()
 #game.player1.ship = LightShip(1,500,500,game)
 game.player1.ship = HeavyShip(1,500,500,game)
 
-#game.objectList.append(BasicShip(3, 500,32,game))
-#game.objectList[0].flipImage()
-level_1(game)
+game.level = Level1(game)
+
 
 while game.status == True:
 

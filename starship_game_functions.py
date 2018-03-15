@@ -22,9 +22,12 @@ class Game(object):
 		
 		if self.numberPlayers == 1:
 			self.player1 = Player("Player One")
+			self.level = None
 		elif self.numberPlayers == 2:
 			self.player1 = Player("Player One")
 			self.player2 = Player("Player Two")
+			
+		self.AI = False
 
 		self.WINDOWHEIGHT = 600
 		self.WINDOWWIDTH = 1000
@@ -39,8 +42,7 @@ class Game(object):
 		
 		self.endCondition = 0
 		
-		#self.keyDown = np.zeros(6)
-		#self.keyUp = np.zeros(6)
+		self.counter = 0
 		
 class Player(object):
 	def __init__(self, name):
@@ -92,22 +94,16 @@ def processInput(game):
 			elif event.type == KEYDOWN:
 				if event.key == K_UP:
 					game.player1.keyDown[0] = 1
-					#game.player1.commandList.append(Command.UP)
 				elif event.key == K_DOWN:
 					game.player1.keyDown[1] = 1
-					#game.player1.commandList.append(Command.DOWN)
 				elif event.key == K_LEFT:
 					game.player1.keyDown[2] = 1
-					#game.player1.commandList.append(Command.LEFT)
 				elif event.key == K_RIGHT:
 					game.player1.keyDown[3] = 1
-					#game.player1.commandList.append(Command.RIGHT)
 				elif event.key == K_SPACE:
 					game.player1.keyDown[4] = 1
-					#game.player1.commandList.append(Command.PRIMARY)
 				elif event.key == K_x:
 					game.player1.keyDown[5] = 1
-					#game.player1.commandList.append(Command.SECONDARY)
 			elif event.type == KEYUP:
 				if event.key == K_UP:
 					game.player1.keyUp[0] = 1
@@ -147,7 +143,7 @@ def processInput(game):
 
 
 def updateGame(game):
-	
+	game.counter += 1
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	game.incidenceMap = np.zeros((game.WINDOWHEIGHT, game.WINDOWWIDTH))
 	
@@ -158,6 +154,9 @@ def updateGame(game):
 	
 	#statusPlayer2 = game.player2.ship.update(game)
 	
+	if game.AI == True:
+		game.level.updateAI(game, game.counter)
+		
 	i = 0
 	while (i < len(game.objectList)):
 		alive = game.objectList[i].update(game)
@@ -173,12 +172,12 @@ def updateGame(game):
 		i += 1
 		
 	if len(game.objectGarbage) > 0:
-		for entity in game.objectGarbage:
-			game.objectList.pop(entity)
+		for i in range(len(game.objectGarbage)-1, -1, -1):
+			game.objectList.pop(game.objectGarbage[i])
 
 	if len(game.projectileGarbage) > 0:
-		for entity in game.projectileGarbage:
-			game.projectileList.pop(entity)
+		for i in range(len(game.projectileGarbage)-1, -1, -1):
+			game.projectileList.pop(game.projectileGarbage[i])
 
 	game.objectGarbage = []
 	game.projectileGarbage = []
@@ -188,9 +187,9 @@ def updateGame(game):
 def handleImpact(game):
 	for impact in game.impactList:
 		if impact.locID == 1:
-			game.player1.damageList.append(impact.damage)
+			game.player1.ship.damageList.append(impact.damage)
 		elif impact.locID == 2:
-			game.player2.damageList.append(impact.damage)
+			game.player2.ship.damageList.append(impact.damage)
 		else:
 			for entity in game.objectList:
 				if entity.ID == impact.locID:

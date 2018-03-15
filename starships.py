@@ -42,6 +42,8 @@ class Ship(object):
 		elif self.ID > 1:
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
+			
+		self.AI = 0
 
 		self.commandList = []
 		self.damageList = []
@@ -97,7 +99,10 @@ class Ship(object):
 		self.shipImg = pygame.transform.flip(self.shipImg, False, True)
 		
 	def fireWeapon(self, weapon, game):
-		weapon.release(self.shipX, self.shipY, self.direction, game)
+		if self.direction == 0:
+			weapon.release(self.shipX, self.shipY, self.direction, game)
+		elif self.direction == 1:
+			weapon.release(self.shipX, self.shipY + self.height + 1, self.direction, game)
 
 	def fireWeaponA(self, game):
 		self.fireWeapon(self.weaponA, game)
@@ -129,6 +134,7 @@ class Ship(object):
 			self.cooldownA += 1
 		if self.cooldownB < 100:
 			self.cooldownB += 1
+			
 			
 		for com in self.commandList:
 			if com == Command.UP:
@@ -184,7 +190,10 @@ class BasicShip(Ship):
 		elif self.ID > 1:
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
-			
+
+		self.autoFile = False
+		self.autoFunction = False
+						
 		self.commandList = []
 		self.damageList = []
 		
@@ -217,7 +226,10 @@ class LightShip(Ship):
 		elif self.ID > 1:
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
-					
+
+		self.autoFile = False
+		self.autoFunction = False
+		
 		self.commandList = []
 		self.damageList = []
 		
@@ -250,7 +262,10 @@ class HeavyShip(Ship):
 		elif self.ID > 1:
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
-					
+
+		self.autoFile = False
+		self.autoFunction = False
+							
 		self.commandList = []
 		self.damageList = []
 		
