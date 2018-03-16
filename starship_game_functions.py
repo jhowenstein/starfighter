@@ -37,8 +37,6 @@ class Game(object):
 		self.DISPLAYSURF = 0 # Display surface to be initialize prior to game loop
 		
 		self.BG_COLOR = (0, 0, 0) # Default = Black
-
-		self.userControl = Control.Keyboard
 		
 		self.endCondition = 0
 		
@@ -49,6 +47,8 @@ class Player(object):
 		self.name = name
 		self.ship = None
 		self.status = True
+
+		self.userControl = Control.Keyboard_A
 		
 		self.keyDown = np.zeros(6)
 		self.keyUp = np.zeros(6)
@@ -63,8 +63,10 @@ class Command(IntEnum):
 	SECONDARY = 6
 
 class Control(IntEnum):
-	Keyboard = 1
-	Controller = 2
+	Keyboard_A = 1
+	Keyboard_B = 2
+	Controller_A = 3
+	Controller_B = 4
 	
 class Ship(IntEnum):
 	Basic = 1
@@ -85,13 +87,15 @@ def createShip(game, shipType, location):
 def processInput(game):
 	# Process input player 1
 	
-	if game.userControl == Control.Keyboard:
+	if game.player1.userControl == Control.Keyboard_A:
 		eventList = pygame.event.get()
 		for event in eventList:
 			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
 				pygame.quit()
 				sys.exit()
-			elif event.type == KEYDOWN:
+			handleKeyboard(game.player1, event)
+			'''
+			if event.type == KEYDOWN:
 				if event.key == K_UP:
 					game.player1.keyDown[0] = 1
 				elif event.key == K_DOWN:
@@ -116,12 +120,15 @@ def processInput(game):
 				elif event.key == K_SPACE:
 					game.player1.keyUp[4] = 1
 				elif event.key == K_x:
-					game.player1.keyUp[5] = 1	
+					game.player1.keyUp[5] = 1
+			'''
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
 		sys.exit()
-		
+	
+	translateCommands(game.player1)
+	'''
 	if game.player1.keyDown[0]:
 		game.player1.ship.commandList.append(Command.UP)
 	if game.player1.keyDown[1]:
@@ -140,7 +147,7 @@ def processInput(game):
 			game.player1.keyDown[i] = 0
 			
 	game.player1.keyUp = np.zeros(6)
-
+	'''
 
 def updateGame(game):
 	game.counter += 1
@@ -261,5 +268,81 @@ def finalScreen(game):
 		pygame.display.update()
 		time.sleep(5)
 	
+def handleKeyboard(player, event):
+	if player.userControl = Control.Keyboard_A:
+		if event.type == KEYDOWN:
+			if event.key == K_UP:
+				player.keyDown[0] = 1
+			elif event.key == K_DOWN:
+				player.keyDown[1] = 1
+			elif event.key == K_LEFT:
+				player.keyDown[2] = 1
+			elif event.key == K_RIGHT:
+				player.keyDown[3] = 1
+			elif event.key == K_SPACE:
+				player.keyDown[4] = 1
+			elif event.key == K_x:
+				player.keyDown[5] = 1
+		elif event.type == KEYUP:
+			if event.key == K_UP:
+				player.keyUp[0] = 1
+			elif event.key == K_DOWN:
+				player.keyUp[1] = 1
+			elif event.key == K_LEFT:
+				player.keyUp[2] = 1
+			elif event.key == K_RIGHT:
+				player.keyUp[3] = 1
+			elif event.key == K_SPACE:
+				player.keyUp[4] = 1
+			elif event.key == K_x:
+				player.keyUp[5] = 1
+	if player.userControl = Control.Keyboard_B:
+		if event.type == KEYDOWN:
+			if event.key == K_w:
+				player.keyDown[0] = 1
+			elif event.key == K_s:
+				player.keyDown[1] = 1
+			elif event.key == K_a:
+				player.keyDown[2] = 1
+			elif event.key == K_d:
+				player.keyDown[3] = 1
+			elif event.key == K_q:
+				player.keyDown[4] = 1
+			elif event.key == K_e:
+				player.keyDown[5] = 1
+		elif event.type == KEYUP:
+			if event.key == K_w:
+				player.keyUp[0] = 1
+			elif event.key == K_s:
+				player.keyUp[1] = 1
+			elif event.key == K_a:
+				player.keyUp[2] = 1
+			elif event.key == K_d:
+				player.keyUp[3] = 1
+			elif event.key == K_q:
+				player.keyUp[4] = 1
+			elif event.key == K_e:
+				player.keyUp[5] = 1
+
+def translateCommands(player):
+	if player.keyDown[0]:
+		player.ship.commandList.append(Command.UP)
+	if player.keyDown[1]:
+		player.ship.commandList.append(Command.DOWN)
+	if player.keyDown[2]:
+		player.ship.commandList.append(Command.LEFT)
+	if player.keyDown[3]:
+		player.ship.commandList.append(Command.RIGHT)
+	if player.keyDown[4]:
+		player.ship.commandList.append(Command.PRIMARY)
+	if player.keyDown[5]:
+		player.ship.commandList.append(Command.SECONDARY)
+		
+	for i in range(player.keyDown.size):
+		if player.keyUp[i] == 1:
+			player.keyDown[i] = 0
+			
+	player.keyUp = np.zeros(6)
+
 			
 				
