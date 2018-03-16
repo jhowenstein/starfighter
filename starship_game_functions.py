@@ -150,7 +150,7 @@ def updateGame(game):
 	if len(game.impactList) > 0:
 		handleImpact(game)
 	
-	statusPlayer1 = game.player1.ship.update(game)
+	game.player1.status = game.player1.ship.update(game)
 	
 	#statusPlayer2 = game.player2.ship.update(game)
 	
