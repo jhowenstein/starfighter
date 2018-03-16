@@ -87,67 +87,19 @@ def createShip(game, shipType, location):
 def processInput(game):
 	# Process input player 1
 	
-	if game.player1.userControl == Control.Keyboard_A:
+	if game.player1.userControl == Control.Keyboard_A or game.player1.userControl == Control.Keyboard_B:
 		eventList = pygame.event.get()
 		for event in eventList:
 			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
 				pygame.quit()
 				sys.exit()
 			handleKeyboard(game.player1, event)
-			'''
-			if event.type == KEYDOWN:
-				if event.key == K_UP:
-					game.player1.keyDown[0] = 1
-				elif event.key == K_DOWN:
-					game.player1.keyDown[1] = 1
-				elif event.key == K_LEFT:
-					game.player1.keyDown[2] = 1
-				elif event.key == K_RIGHT:
-					game.player1.keyDown[3] = 1
-				elif event.key == K_SPACE:
-					game.player1.keyDown[4] = 1
-				elif event.key == K_x:
-					game.player1.keyDown[5] = 1
-			elif event.type == KEYUP:
-				if event.key == K_UP:
-					game.player1.keyUp[0] = 1
-				elif event.key == K_DOWN:
-					game.player1.keyUp[1] = 1
-				elif event.key == K_LEFT:
-					game.player1.keyUp[2] = 1
-				elif event.key == K_RIGHT:
-					game.player1.keyUp[3] = 1
-				elif event.key == K_SPACE:
-					game.player1.keyUp[4] = 1
-				elif event.key == K_x:
-					game.player1.keyUp[5] = 1
-			'''
 	elif game.userControl == Control.Controller:
 		print("Controller not yet supported")
 		pygame.quit()
 		sys.exit()
 	
 	translateCommands(game.player1)
-	'''
-	if game.player1.keyDown[0]:
-		game.player1.ship.commandList.append(Command.UP)
-	if game.player1.keyDown[1]:
-		game.player1.ship.commandList.append(Command.DOWN)
-	if game.player1.keyDown[2]:
-		game.player1.ship.commandList.append(Command.LEFT)
-	if game.player1.keyDown[3]:
-		game.player1.ship.commandList.append(Command.RIGHT)
-	if game.player1.keyDown[4]:
-		game.player1.ship.commandList.append(Command.PRIMARY)
-	if game.player1.keyDown[5]:
-		game.player1.ship.commandList.append(Command.SECONDARY)
-		
-	for i in range(game.player1.keyDown.size):
-		if game.player1.keyUp[i] == 1:
-			game.player1.keyDown[i] = 0
-			
-	game.player1.keyUp = np.zeros(6)
-	'''
 
 def updateGame(game):
 	game.counter += 1
@@ -269,7 +221,7 @@ def finalScreen(game):
 		time.sleep(5)
 	
 def handleKeyboard(player, event):
-	if player.userControl = Control.Keyboard_A:
+	if player.userControl == Control.Keyboard_A:
 		if event.type == KEYDOWN:
 			if event.key == K_UP:
 				player.keyDown[0] = 1
@@ -296,7 +248,7 @@ def handleKeyboard(player, event):
 				player.keyUp[4] = 1
 			elif event.key == K_x:
 				player.keyUp[5] = 1
-	if player.userControl = Control.Keyboard_B:
+	if player.userControl == Control.Keyboard_B:
 		if event.type == KEYDOWN:
 			if event.key == K_w:
 				player.keyDown[0] = 1
