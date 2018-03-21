@@ -191,8 +191,7 @@ class BasicShip(Ship):
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
 
-		self.autoFile = False
-		self.autoFunction = False
+		self.AI = 0
 						
 		self.commandList = []
 		self.damageList = []
@@ -227,8 +226,7 @@ class LightShip(Ship):
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
 
-		self.autoFile = False
-		self.autoFunction = False
+		self.AI = 0
 		
 		self.commandList = []
 		self.damageList = []
@@ -263,8 +261,7 @@ class HeavyShip(Ship):
 			self.topLim = 0
 			self.bottomLim = game.WINDOWHEIGHT * .25
 
-		self.autoFile = False
-		self.autoFunction = False
+		self.AI = 0
 							
 		self.commandList = []
 		self.damageList = []
