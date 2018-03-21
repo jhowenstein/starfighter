@@ -25,7 +25,7 @@ class Level(object):
 class Level1(Level):
 	def __init__(self, game):
 		game.AI = True
-			
+
 		enemy_1 = BasicShip(3, 300, 32, game)
 		enemy_2 = BasicShip(4, 500, 32, game)
 		enemy_3 = BasicShip(5, 700, 32, game)
@@ -63,5 +63,6 @@ class Level1(Level):
 		else:
 			command = []
 		return command
-				
+
+			
 		
