@@ -17,7 +17,7 @@ class Command(IntEnum):
 class Ship(object):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
-		self.shipImg = pygame.image.load('SpaceShipSmall.png')
+		self.shipImg = pygame.image.load('StandardShip.png')
 		self.width = self.shipImg.get_width()
 		self.height = self.shipImg.get_height()
 		
@@ -165,7 +165,7 @@ class Ship(object):
 class BasicShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
-		self.shipImg = pygame.image.load('SpaceShipSmall.png')
+		self.shipImg = pygame.image.load('StandardShip.png')
 		self.width = self.shipImg.get_width()
 		self.height = self.shipImg.get_height()
 		
@@ -201,7 +201,7 @@ class BasicShip(Ship):
 class LightShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
-		self.shipImg = pygame.image.load('SpaceShipSmall.png')
+		self.shipImg = pygame.image.load('LightShip.png')
 		self.width = self.shipImg.get_width()
 		self.height = self.shipImg.get_height()
 		
@@ -237,7 +237,7 @@ class LightShip(Ship):
 class HeavyShip(Ship):
 	def __init__(self, shipID, initX, initY, game):
 		self.ID = shipID
-		self.shipImg = pygame.image.load('SpaceShipSmall.png')
+		self.shipImg = pygame.image.load('HeavyShip.png')
 		self.width = self.shipImg.get_width()
 		self.height = self.shipImg.get_height()
 		
