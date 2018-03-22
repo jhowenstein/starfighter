@@ -15,7 +15,7 @@ class Command(IntEnum):
 	SECONDARY = 6
 	
 class Ship(object):
-	def __init__(self, shipID, initX, initY, game):
+	def __init__(self, shipID, initX, initY, direction, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = self.shipImg.get_width()
@@ -32,9 +32,14 @@ class Ship(object):
 		self.cooldownA = 100
 		self.cooldownB = 100
 
+		self.direction = direction # Upward: 0, Downward: 1
+
 		self.shipX = initX
-		self.shipY = initY
-		self.direction = 0 # Upward: 0, Downward: 1
+		if self.direction == 0:
+			self.shipY = initY
+		elif self.direction == 1:
+			self.shipY = initY - self.shipImg.get_height()
+		
 		
 		if self.ID == 1:
 			self.topLim = game.WINDOWHEIGHT * .75
@@ -44,6 +49,7 @@ class Ship(object):
 			self.bottomLim = game.WINDOWHEIGHT * .25
 			
 		self.AI = 0
+		self.offsetAI = 0 # Time offset of the AI procedure for individual ship
 
 		self.commandList = []
 		self.damageList = []
@@ -163,7 +169,7 @@ class Ship(object):
 		return True
 
 class BasicShip(Ship):
-	def __init__(self, shipID, initX, initY, game):
+	def __init__(self, shipID, initX, initY, direction, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = self.shipImg.get_width()
@@ -180,9 +186,13 @@ class BasicShip(Ship):
 		self.cooldownA = 100
 		self.cooldownB = 100
 
+		self.direction = direction # Upward: 0, Downward: 1
+
 		self.shipX = initX
-		self.shipY = initY
-		self.direction = 0 # Upward: 0, Downward: 1
+		if self.direction == 0:
+			self.shipY = initY
+		elif self.direction == 1:
+			self.shipY = initY - self.shipImg.get_height()
 		
 		if self.ID == 1:
 			self.topLim = game.WINDOWHEIGHT * .75
@@ -192,13 +202,14 @@ class BasicShip(Ship):
 			self.bottomLim = game.WINDOWHEIGHT * .25
 
 		self.AI = 0
+		self.offsetAI = 0 # Time offset of the AI procedure for individual ship
 						
 		self.commandList = []
 		self.damageList = []
 		
 
 class LightShip(Ship):
-	def __init__(self, shipID, initX, initY, game):
+	def __init__(self, shipID, initX, initY, direction, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = self.shipImg.get_width()
@@ -215,9 +226,13 @@ class LightShip(Ship):
 		self.cooldownA = 100
 		self.cooldownB = 100
 		
+		self.direction = direction # Upward: 0, Downward: 1
+
 		self.shipX = initX
-		self.shipY = initY
-		self.direction = 0 # Upward: 0, Downward: 1
+		if self.direction == 0:
+			self.shipY = initY
+		elif self.direction == 1:
+			self.shipY = initY - self.shipImg.get_height()
 
 		if self.ID == 1:
 			self.topLim = game.WINDOWHEIGHT * .75
@@ -233,7 +248,7 @@ class LightShip(Ship):
 		
 
 class HeavyShip(Ship):
-	def __init__(self, shipID, initX, initY, game):
+	def __init__(self, shipID, initX, initY, direction, game):
 		self.ID = shipID
 		self.shipImg = pygame.image.load('SpaceShipSmall.png')
 		self.width = self.shipImg.get_width()
@@ -250,9 +265,13 @@ class HeavyShip(Ship):
 		self.cooldownA = 100
 		self.cooldownB = 100
 		
+		self.direction = direction # Upward: 0, Downward: 1
+
 		self.shipX = initX
-		self.shipY = initY
-		self.direction = 0 # Upward: 0, Downward: 1
+		if self.direction == 0:
+			self.shipY = initY
+		elif self.direction == 1:
+			self.shipY = initY - self.shipImg.get_height()
 
 		if self.ID == 1:
 			self.topLim = game.WINDOWHEIGHT * .75
@@ -262,6 +281,7 @@ class HeavyShip(Ship):
 			self.bottomLim = game.WINDOWHEIGHT * .25
 
 		self.AI = 0
+		self.offsetAI = 0 # Time offset of the AI procedure for individual ship
 							
 		self.commandList = []
 		self.damageList = []
