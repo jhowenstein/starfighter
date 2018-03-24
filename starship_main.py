@@ -11,9 +11,10 @@ from gameUI import *
 
 pygame.init()
 
-numberPlayers = 1
+WINDOWWIDTH = 1000
+WINDOWHEIGHT = 600
 
-game = Game(numberPlayers)
+game = Game(WINDOWWIDTH,WINDOWHEIGHT)
 
 BLACK = (0, 0, 0)
 
@@ -23,10 +24,19 @@ game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT)
 game.DISPLAYSURF.fill(game.BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
+#splashScreen(game)
+#playerModeSelect(game)
+#singlePlayerSetup(game)
+levelSelect(game)
+
+numberPlayers = 1
+
+game.setPlayers(numberPlayers)
+
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-#game.player1.ship = BasicShip(1,500,500,0,game)
+game.player1.ship = BasicShip(1,500,500,0,game)
 #game.player1.ship = LightShip(1,500,500,0,game)
 #game.player1.ship = HeavyShip(1,500,500,0,game)
 

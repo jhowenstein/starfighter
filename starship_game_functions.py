@@ -9,9 +9,8 @@ import numpy as np
 
 
 class Game(object):
-	def __init__(self, numberPlayers):
+	def __init__(self, WINDOWWIDTH, WINDOWHEIGHT):
 		self.status = True # Defines whether the game is currenty active and valid
-		self.numberPlayers = numberPlayers
 		
 		self.objectList = []
 		self.projectileList = []
@@ -19,18 +18,11 @@ class Game(object):
 		self.projectileGarbage = []
 		self.impactList = []
 		#self.commandList = []
-		
-		if self.numberPlayers == 1:
-			self.player1 = Player("Player One")
-			self.level = None
-		elif self.numberPlayers == 2:
-			self.player1 = Player("Player One")
-			self.player2 = Player("Player Two")
 			
 		self.AI = False
 
-		self.WINDOWHEIGHT = 600
-		self.WINDOWWIDTH = 1000
+		self.WINDOWHEIGHT = WINDOWHEIGHT
+		self.WINDOWWIDTH = WINDOWWIDTH
 		
 		self.incidenceMap = np.zeros((self.WINDOWHEIGHT, self.WINDOWWIDTH))
 		
@@ -41,6 +33,21 @@ class Game(object):
 		self.endCondition = 0
 		
 		self.counter = 0
+		
+	def setPlayers(self, numberPlayers):
+		self.numberPlayers = numberPlayers
+		if numberPlayers == 1:
+			self.player1 = Player("Player One")
+			self.level = None
+		elif numberPlayers == 2:
+			self.player1 = Player("Player One")
+			self.player2 = Player("Player Two")
+		else: 
+			print("Invalid Player Number Entered")
+			pygame.quit()
+			sys.exit()
+			
+		
 		
 class Player(object):
 	def __init__(self, name):

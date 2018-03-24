@@ -70,17 +70,17 @@ def playerModeSelect(game):
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 1 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (300, 275, 100, 50))
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (275, 275, 150, 50))
 	# Player 1 option font object
-	fontObj = pygame.font.Font('freesansbold.ttf',28)
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('1 Player', True, WHITE)
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (350,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 2 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (600, 275, 100, 50))
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (575, 275, 150, 50))
 	# Player 2 option font object
-	fontObj = pygame.font.Font('freesansbold.ttf',28)
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('2 Player', True, WHITE)
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (650,300)
@@ -88,6 +88,7 @@ def playerModeSelect(game):
 
 	# Update screen
 	pygame.display.update()
+	time.sleep(3)
 
 
 def singlePlayerSetup(game):
@@ -102,26 +103,29 @@ def singlePlayerSetup(game):
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 1 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (300, 275, 100, 50))
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (275, 275, 150, 50))
 	# Player 1 option font object
-	fontObj = pygame.font.Font('freesansbold.ttf',28)
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('New Game', True, WHITE)
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (350,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 2 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (600, 275, 100, 50))
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (575, 275, 150, 50))
 	# Player 2 option font object
-	fontObj = pygame.font.Font('freesansbold.ttf',28)
-	textSurfaceObj = fontObj.render('Continue Game', True, WHITE)
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	textSurfaceObj = fontObj.render('Continue', True, WHITE)
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (650,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	# Update screen
 	pygame.display.update()
+	time.sleep(3)
 
 def levelSelect(game):
+	WHITE = (255, 255, 255)
+	BLUE = (0, 0, 255)
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	# Level Select Header Object
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
@@ -140,23 +144,24 @@ def levelSelect(game):
 		pygame.draw.rect(game.DISPLAYSURF, BLUE, (600, yPos, 100, 50))
 
 	for i in range(5):
-		fontObj = pygame.font.Font('freesansbold.ttf',28)
+		fontObj = pygame.font.Font('freesansbold.ttf',24)
 		level_tag = 'Level ' + str(nLevel[i])
-		textSurfaceObj = fontObj.render('Continue Game', True, WHITE)
+		textSurfaceObj = fontObj.render(level_tag, True, WHITE)
 		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (350, yPositions[i])
+		textRectObj.center = (350, yPositions[i]+25)
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	nLevel = [6, 7, 8, 9, 10]
 	for i in range(5):
-		fontObj = pygame.font.Font('freesansbold.ttf',28)
+		fontObj = pygame.font.Font('freesansbold.ttf',24)
 		level_tag = 'Level ' + str(nLevel[i])
-		textSurfaceObj = fontObj.render('Continue Game', True, WHITE)
+		textSurfaceObj = fontObj.render(level_tag, True, WHITE)
 		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (650, yPositions[i])
+		textRectObj.center = (650, yPositions[i]+25)
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	pygame.display.update()
+	time.sleep(5)
 
 
 
