@@ -6,6 +6,7 @@ from starships import *
 from weapons import *
 from projectiles import *
 from levels import *
+from gameUI import *
 
 
 pygame.init()
