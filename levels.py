@@ -19,7 +19,6 @@ class Level(object):
 	def setAI(self, ship, N, counter_offset):
 		ship.AI = N
 		ship.offsetAI = counter_offset
-		ship.bottomLim = game.WINDOWHEIGHT * .5
 		
 	def updateAI(self):
 		pass
@@ -28,9 +27,9 @@ class Level1(Level):
 	def __init__(self, game):
 		game.AI = True
 
-		enemy_1 = BasicShip(3, 300, 32, 1, game)
-		enemy_2 = BasicShip(4, 500, 32, 1, game)
-		enemy_3 = BasicShip(5, 700, 32, 1, game)
+		enemy_1 = BasicShip(3, 300, 100, 1, game)
+		enemy_2 = BasicShip(4, 500, 100, 1, game)
+		enemy_3 = BasicShip(5, 700, 100, 1, game)
 		
 		self.setAI(enemy_1, 1, 0)
 		self.setAI(enemy_2, 1, 0)
@@ -68,15 +67,15 @@ class Level2(Level):
 	def __init__(self, game):
 		game.AI = True
 
-		enemy_1 = BasicShip(3, 350, 182, 1, game)
-		enemy_2 = BasicShip(4, 200, 182, 1, game)
-		enemy_3 = BasicShip(5, 200, 32, 1, game)
-		enemy_4 = BasicShip(6, 350, 32, 1, game)
+		enemy_1 = BasicShip(3, 350, 250, 1, game)
+		enemy_2 = BasicShip(4, 200, 250, 1, game)
+		enemy_3 = BasicShip(5, 200, 100, 1, game)
+		enemy_4 = BasicShip(6, 350, 100, 1, game)
 
-		enemy_5 = BasicShip(7, 650, 182, 1, game)
-		enemy_6 = BasicShip(8, 800, 182, 1, game)
-		enemy_7 = BasicShip(9, 800, 32, 1, game)
-		enemy_8 = BasicShip(10, 650, 32, 1, game)
+		enemy_5 = BasicShip(7, 650, 250, 1, game)
+		enemy_6 = BasicShip(8, 800, 250, 1, game)
+		enemy_7 = BasicShip(9, 800, 100, 1, game)
+		enemy_8 = BasicShip(10, 650, 100, 1, game)
 
 		self.setAI(enemy_1, 1, 0)
 		self.setAI(enemy_2, 1, 30)
@@ -98,6 +97,7 @@ class Level2(Level):
 
 		for entity in game.objectList:
 			entity.flipImage()  # Move this into the ship object
+			entity.bottomLim = game.WINDOWHEIGHT * .5
 
 	def updateAI(self, game, counter):
 		for entity in game.objectList:
@@ -114,13 +114,13 @@ class Level2(Level):
 			command = [1]
 		elif counter < 90:
 			command = [4]
-		elif counter < 120
+		elif counter < 120:
 			command = [2]
 		else:
 			command = []
 
-		if command == 0 or command == 10 or command == 20 or command == 30:
-			command.append[5]
+		if counter == 0 or counter == 10 or counter == 20 or counter == 30:
+			command.append(5)
 		return command
 		
 	def runAI_2(self, ship, counter):
@@ -131,13 +131,13 @@ class Level2(Level):
 			command = [1]
 		elif counter < 90:
 			command = [3]
-		elif counter < 120
+		elif counter < 120:
 			command = [2]
 		else:
 			command = []
 
-		if command == 0 or command == 10 or command == 20 or command == 30:
-			command.append[5]
+		if counter == 0 or counter == 10 or counter == 20 or counter == 30:
+			command.append(5)
 		return command
 
 
