@@ -24,14 +24,13 @@ game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT)
 game.DISPLAYSURF.fill(game.BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
-#splashScreen(game)
-#playerModeSelect(game)
+#numberPlayers = 1
+
+splashScreen(game)
+numberPlayers = playerModeSelect(game)
+game.setPlayers(numberPlayers)
 #singlePlayerSetup(game)
 levelSelect(game)
-
-numberPlayers = 1
-
-game.setPlayers(numberPlayers)
 
 FPS = 30
 fpsClock = pygame.time.Clock()

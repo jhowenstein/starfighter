@@ -62,6 +62,9 @@ def playerModeSelect(game):
 	WHITE = (255, 255, 255)
 	BLUE = (0, 0, 255)
 
+	buttonWidth = 150
+	buttonHeight = 50
+
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	# Select game mode font object
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
@@ -70,7 +73,9 @@ def playerModeSelect(game):
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 1 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (275, 275, 150, 50))
+	p1Button_topLeftX = 275
+	p1Button_topLeftY = 275
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (p1Button_topLeftX, p1Button_topLeftY, buttonWidth, buttonHeight))
 	# Player 1 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('1 Player', True, WHITE)
@@ -78,7 +83,9 @@ def playerModeSelect(game):
 	textRectObj.center = (350,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Player 2 Button Rectangle
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (575, 275, 150, 50))
+	p2Button_topLeftX = 575
+	p2Button_topLeftY = 275
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, (p2Button_topLeftX, p2Button_topLeftY, buttonWidth, buttonHeight))
 	# Player 2 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('2 Player', True, WHITE)
@@ -88,6 +95,21 @@ def playerModeSelect(game):
 
 	# Update screen
 	pygame.display.update()
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				mouseX, mouseY = event.pos
+				if ((mouseX > p1Button_topLeftX) and (mouseX < (p1Button_topLeftX + buttonWidth)) and (mouseY > p1Button_topLeftY) and (mouseY < (p1Button_topLeftY + buttonHeight))):
+					return 1
+				elif ((mouseX > p2Button_topLeftX) and (mouseX < (p2Button_topLeftX + buttonWidth)) and (mouseY > p2Button_topLeftY) and (mouseY < (p2Button_topLeftY + buttonHeight))):
+					return 2
+
+	return 0
+
 	time.sleep(3)
 
 
