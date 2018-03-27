@@ -185,5 +185,9 @@ def levelSelect(game):
 	pygame.display.update()
 	time.sleep(5)
 
-
+def buttonSelect(button, mouseX, mouseY):
+	if (mouseX > button.left and mouseX < button.right and mouseY > button.top and mouseY < button.bottom):
+		return True
+	else:
+		return False
 
