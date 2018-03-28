@@ -75,7 +75,8 @@ def playerModeSelect(game):
 	# Player 1 Button Rectangle
 	p1Button_topLeftX = 275
 	p1Button_topLeftY = 275
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (p1Button_topLeftX, p1Button_topLeftY, buttonWidth, buttonHeight))
+	p1button = pygame.Rect(p1Button_topLeftX, p1Button_topLeftY, buttonWidth, buttonHeight)
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, p1button)
 	# Player 1 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('1 Player', True, WHITE)
@@ -85,7 +86,8 @@ def playerModeSelect(game):
 	# Player 2 Button Rectangle
 	p2Button_topLeftX = 575
 	p2Button_topLeftY = 275
-	pygame.draw.rect(game.DISPLAYSURF, BLUE, (p2Button_topLeftX, p2Button_topLeftY, buttonWidth, buttonHeight))
+	p2button = pygame.Rect(p2Button_topLeftX, p2Button_topLeftY, buttonWidth, buttonHeight)
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, p2button)
 	# Player 2 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
 	textSurfaceObj = fontObj.render('2 Player', True, WHITE)
@@ -103,9 +105,9 @@ def playerModeSelect(game):
 				sys.exit()
 			elif event.type == MOUSEBUTTONUP:
 				mouseX, mouseY = event.pos
-				if ((mouseX > p1Button_topLeftX) and (mouseX < (p1Button_topLeftX + buttonWidth)) and (mouseY > p1Button_topLeftY) and (mouseY < (p1Button_topLeftY + buttonHeight))):
+				if buttonSelect(p1button, mouseX, mouseY):
 					return 1
-				elif ((mouseX > p2Button_topLeftX) and (mouseX < (p2Button_topLeftX + buttonWidth)) and (mouseY > p2Button_topLeftY) and (mouseY < (p2Button_topLeftY + buttonHeight))):
+				elif buttonSelect(p2button, mouseX, mouseY):
 					return 2
 
 	return 0
@@ -124,7 +126,7 @@ def singlePlayerSetup(game):
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-	# Player 1 Button Rectangle
+	# New Game Button Rectangle
 	pygame.draw.rect(game.DISPLAYSURF, BLUE, (275, 275, 150, 50))
 	# Player 1 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
@@ -132,7 +134,7 @@ def singlePlayerSetup(game):
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (350,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-	# Player 2 Button Rectangle
+	# Continue Game Button Rectangle
 	pygame.draw.rect(game.DISPLAYSURF, BLUE, (575, 275, 150, 50))
 	# Player 2 option font object
 	fontObj = pygame.font.Font('freesansbold.ttf',24)
@@ -183,7 +185,7 @@ def levelSelect(game):
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	pygame.display.update()
-	time.sleep(5)
+	time.sleep(2)
 
 def buttonSelect(button, mouseX, mouseY):
 	if (mouseX > button.left and mouseX < button.right and mouseY > button.top and mouseY < button.bottom):
