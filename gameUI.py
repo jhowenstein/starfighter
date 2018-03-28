@@ -112,8 +112,6 @@ def playerModeSelect(game):
 
 	return 0
 
-	time.sleep(3)
-
 
 def singlePlayerSetup(game):
 	WHITE = (255, 255, 255)
@@ -161,11 +159,16 @@ def levelSelect(game):
 	yPositions = [100, 200, 300, 400, 500]
 	nLevel = [1, 2, 3, 4, 5]
 
-	for yPos in yPositions:
-		pygame.draw.rect(game.DISPLAYSURF, BLUE, (300, yPos, 100, 50))
+	buttonList = []
 
 	for yPos in yPositions:
-		pygame.draw.rect(game.DISPLAYSURF, BLUE, (600, yPos, 100, 50))
+		buttonList.append(pygame.Rect(300, yPos, 100, 50))
+
+	for yPos in yPositions:
+		buttonList.append(pygame.Rect(600, yPos, 100, 50))
+
+	for button in buttonList:
+		pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
 
 	for i in range(5):
 		fontObj = pygame.font.Font('freesansbold.ttf',24)
@@ -185,7 +188,19 @@ def levelSelect(game):
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	pygame.display.update()
-	time.sleep(2)
+
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				mouseX, mouseY = event.pos
+				for i in range(len(buttonList)):
+					if buttonSelect(buttonList[i], mouseX, mouseY):
+						return i + 1
+	return 0
 
 def buttonSelect(button, mouseX, mouseY):
 	if (mouseX > button.left and mouseX < button.right and mouseY > button.top and mouseY < button.bottom):
