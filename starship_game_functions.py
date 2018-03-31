@@ -39,6 +39,7 @@ class Game(object):
 		if numberPlayers == 1:
 			self.player1 = Player("Player One")
 			self.level = None
+			self.nLvl = 0
 		elif numberPlayers == 2:
 			self.player1 = Player("Player One")
 			self.player2 = Player("Player Two")
@@ -46,8 +47,36 @@ class Game(object):
 			print("Invalid Player Number Entered")
 			pygame.quit()
 			sys.exit()
+
+	def setLevel(self, level):
+		self.nLvl = level
+		if level == 1:
+			self.level = Level1(game)
+		elif level = 2:
+			self.level = Level2(game)
+		elif level = 3:
+			self.level = Level3(game)
+		elif level = 4:
+			self.level = Level4(game)
+		elif level = 5:
+			self.level = Level5(game)
+		elif level = 6:
+			self.level = Level6(game)
+		elif level = 7:
+			self.level = Level7(game)
+		elif level = 8:
+			self.level = Level8(game)
+		elif level = 9:
+			self.level = Level9(game)
+		elif level = 10:
+			self.level = Level10(game)
+
+	def setUserControl(self, player, method):
+		if player == 1:
+			self.player1.userControl = method
+		elif player == 2:
+			self.player2.userControl = method
 			
-		
 		
 class Player(object):
 	def __init__(self, name):
@@ -90,6 +119,23 @@ def createShip(game, shipType, location):
 		game.objectList.append(HeavyShip(location[0],location[1]))
 '''
 
+def playGame(game):
+	FPS = 30
+	fpsClock = pygame.time.Clock()
+
+	startCountdown()
+
+	while game.status == True:
+
+		processInput(game)
+
+		updateGame(game)
+
+		pygame.display.update()
+		
+		fpsClock.tick(FPS)
+
+	return game.endCondition
 
 def processInput(game):
 	# Process input player 1

@@ -51,7 +51,7 @@ def finalScreen(game):
 def splashScreen(game):
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	fontObj = pygame.font.Font('freesansbold.ttf',48)
-	textSurfaceObj = fontObj.render('Starship PvP!', True, (255,255,255))
+	textSurfaceObj = fontObj.render('Starship!', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (500,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
@@ -201,6 +201,20 @@ def levelSelect(game):
 					if buttonSelect(buttonList[i], mouseX, mouseY):
 						return i + 1
 	return 0
+
+def startCountdown(game):
+	stringList = ['Ready!', '3', '2', '1']
+
+	for item in stringList:
+		game.DISPLAYSURF.fill(game.BG_COLOR)
+		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		textSurfaceObj = fontObj.render(item, True, (255,255,255))
+		textRectObj = textSurfaceObj.get_rect()
+		textRectObj.center = (500,300)
+		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+		pygame.display.update()
+		time.sleep(1)
+
 
 def buttonSelect(button, mouseX, mouseY):
 	if (mouseX > button.left and mouseX < button.right and mouseY > button.top and mouseY < button.bottom):

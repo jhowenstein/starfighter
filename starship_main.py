@@ -31,19 +31,16 @@ numberPlayers = playerModeSelect(game)
 game.setPlayers(numberPlayers)
 #singlePlayerSetup(game)
 lvl = levelSelect(game)
-
-FPS = 30
-fpsClock = pygame.time.Clock()
+game.setLevel(lvl)
 
 game.player1.ship = BasicShip(1,500,500,0,game)
 #game.player1.ship = LightShip(1,500,500,0,game)
 #game.player1.ship = HeavyShip(1,500,500,0,game)
 
-if lvl == 1:
-	game.level = Level1(game)
-elif lvl == 2:
-	game.level = Level2(game)
+FPS = 30
+fpsClock = pygame.time.Clock()
 
+startCountdown()
 
 while game.status == True:
 
