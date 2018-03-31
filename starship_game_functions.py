@@ -4,6 +4,8 @@ from enum import IntEnum
 from starships import *
 from weapons import *
 from projectiles import *
+from levels import *
+from gameUI import *
 import numpy as np
 
 
@@ -51,25 +53,25 @@ class Game(object):
 	def setLevel(self, level):
 		self.nLvl = level
 		if level == 1:
-			self.level = Level1(game)
-		elif level = 2:
-			self.level = Level2(game)
-		elif level = 3:
-			self.level = Level3(game)
-		elif level = 4:
-			self.level = Level4(game)
-		elif level = 5:
-			self.level = Level5(game)
-		elif level = 6:
-			self.level = Level6(game)
-		elif level = 7:
-			self.level = Level7(game)
-		elif level = 8:
-			self.level = Level8(game)
-		elif level = 9:
-			self.level = Level9(game)
-		elif level = 10:
-			self.level = Level10(game)
+			self.level = Level1(self)
+		elif level == 2:
+			self.level = Level2(self)
+		elif level == 3:
+			self.level = Level3(self)
+		elif level == 4:
+			self.level = Level4(self)
+		elif level == 5:
+			self.level = Level5(self)
+		elif level == 6:
+			self.level = Level6(self)
+		elif level == 7:
+			self.level = Level7(self)
+		elif level == 8:
+			self.level = Level8(self)
+		elif level == 9:
+			self.level = Level9(self)
+		elif level == 10:
+			self.level = Level10(self)
 
 	def setUserControl(self, player, method):
 		if player == 1:
@@ -123,7 +125,7 @@ def playGame(game):
 	FPS = 30
 	fpsClock = pygame.time.Clock()
 
-	startCountdown()
+	startCountdown(game)
 
 	while game.status == True:
 

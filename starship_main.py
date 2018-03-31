@@ -37,10 +37,12 @@ game.player1.ship = BasicShip(1,500,500,0,game)
 #game.player1.ship = LightShip(1,500,500,0,game)
 #game.player1.ship = HeavyShip(1,500,500,0,game)
 
+playGame(game)
+'''
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-startCountdown()
+startCountdown(game)
 
 while game.status == True:
 
@@ -51,7 +53,7 @@ while game.status == True:
 	pygame.display.update()
 	
 	fpsClock.tick(FPS)
-
+'''
 finalScreen(game)
 
 pygame.quit()
