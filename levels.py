@@ -62,6 +62,75 @@ class Level1(Level):
 			command = []
 		return command
 
+class Level3(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		enemy_1 = BasicShip(3, 300, 200, 1, game)
+		enemy_2 = BasicShip(4, 500, 200, 1, game)
+		enemy_3 = BasicShip(5, 700, 200, 1, game)
+		enemy_4 = LightShip(6, 500, 100, 1, game)
+		
+		self.setAI(enemy_1, 1, 0)
+		self.setAI(enemy_2, 1, 0)
+		self.setAI(enemy_3, 1, 0)
+		self.setAI(enemy_4, 2, 0)
+		
+		game.objectList.append(enemy_1)
+		game.objectList.append(enemy_2)
+		game.objectList.append(enemy_3)
+		game.objectList.append(enemy_4)
+	
+		for entity in game.objectList:
+			entity.direction = 1
+			entity.flipImage()
+			
+	def updateAI(self, game, counter):
+		for entity in game.objectList:
+			if entity.AI == 1:
+				entity.commandList = self.runAI_1(counter)
+			elif entity.AI == 2:
+				entity.commandList = self.runAI_2(counter)
+				
+	def runAI_1(self, counter):
+		counter = counter % 150
+		if counter < 30:
+			command = [3]
+		elif counter < 90:
+			command = [4]
+		elif counter < 120:
+			command = [3]
+		elif counter == 120 or counter == 130 or counter == 140:
+			command = [5]
+		else:
+			command = []
+		return command
+
+	def runAI_2(self, counter):
+		counter = counter % 150
+		if counter < 30:
+			command = [4]
+		elif counter < 45:
+			command = [2]
+		elif counter < 60:
+			command = [2,3]
+		elif counter < 90:
+			command = [3]
+		elif counter < 105:
+			command = [1,3]
+		elif counter < 120:
+			command = [1]
+		elif counter < 150:
+			command = [4]
+		else:
+			command = []
+
+		if counter == 50 or counter == 60 or counter == 70 or counter == 80 or counter == 90 or counter == 100:
+			command.append(5)
+		return command
+
+
+
 # Level currently in development
 class Level2(Level):
 	def __init__(self, game):
