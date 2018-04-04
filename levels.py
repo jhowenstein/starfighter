@@ -62,13 +62,13 @@ class Level1(Level):
 			command = []
 		return command
 
-class Level3(Level):
+class Level2(Level):
 	def __init__(self, game):
 		game.AI = True
 
-		enemy_1 = BasicShip(3, 300, 200, 1, game)
+		enemy_1 = BasicShip(3, 400, 200, 1, game)
 		enemy_2 = BasicShip(4, 500, 200, 1, game)
-		enemy_3 = BasicShip(5, 700, 200, 1, game)
+		enemy_3 = BasicShip(5, 600, 200, 1, game)
 		enemy_4 = LightShip(6, 500, 100, 1, game)
 		
 		self.setAI(enemy_1, 1, 0)
@@ -84,6 +84,7 @@ class Level3(Level):
 		for entity in game.objectList:
 			entity.direction = 1
 			entity.flipImage()
+			entity.bottomLim = game.WINDOWHEIGHT * .5
 			
 	def updateAI(self, game, counter):
 		for entity in game.objectList:
@@ -132,7 +133,7 @@ class Level3(Level):
 
 
 # Level currently in development
-class Level2(Level):
+class Level3(Level):
 	def __init__(self, game):
 		game.AI = True
 
