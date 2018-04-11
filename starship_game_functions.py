@@ -52,7 +52,9 @@ class Game(object):
 
 	def setLevel(self, level):
 		self.nLvl = level
-		if level == 1:
+		if level == 0:
+			self.level = Level0(self)
+		elif level == 1:
 			self.level = Level1(self)
 		elif level == 2:
 			self.level = Level2(self)

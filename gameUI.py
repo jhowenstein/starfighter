@@ -10,7 +10,7 @@ import numpy as np
 def splashScreen(game):
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	fontObj = pygame.font.Font('freesansbold.ttf',48)
-	textSurfaceObj = fontObj.render('Starship!', True, (255,255,255))
+	textSurfaceObj = fontObj.render('StarFighter!', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (500,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
@@ -119,22 +119,15 @@ def levelSelect(game):
 	nLevel = [1, 2, 3, 4, 5]
 
 	buttonList = []
+	
+	# Added button for introductory Level 0
+	buttonList.append(pygame.Rect(100, 100, 100, 50))
 
 	for yPos in yPositions:
 		buttonList.append(pygame.Rect(300, yPos, 100, 50))
 
 	for yPos in yPositions:
 		buttonList.append(pygame.Rect(600, yPos, 100, 50))
-
-	# Added button for introductory Level 0
-	buttonList.append(pygame.Rect(100, 100, 100, 50))
-	# Level 0 button code placed here to keep it together with the above line
-	fontObj = pygame.font.Font('freesansbold.ttf',24)
-	level_tag = 'Level 0'
-	textSurfaceObj = fontObj.render(level_tag, True, WHITE)
-	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (150, 125)
-	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	for button in buttonList:
 		pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
@@ -156,6 +149,14 @@ def levelSelect(game):
 		textRectObj.center = (650, yPositions[i]+25)
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
+	# Code for level 0 button text
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	level_tag = 'Level 0'
+	textSurfaceObj = fontObj.render(level_tag, True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (150, 125)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
 	pygame.display.update()
 
 	while True:
@@ -168,8 +169,8 @@ def levelSelect(game):
 				mouseX, mouseY = event.pos
 				for i in range(len(buttonList)):
 					if buttonSelect(buttonList[i], mouseX, mouseY):
-						return i + 1
-	return 0
+						return i
+	return -1
 
 def startCountdown(game):
 	stringList = ['Ready!', '3', '2', '1']

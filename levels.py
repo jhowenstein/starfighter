@@ -20,7 +20,7 @@ class Level(object):
 		ship.AI = N
 		ship.offsetAI = counter_offset
 		
-	def updateAI(self):
+	def updateAI(self, game, counter):
 		pass
 
 # Introductory level intended to introduce gameplay
@@ -30,7 +30,10 @@ class Level0(Level):
 
 		enemy_1 = BasicShip(3, 500, 100, 1, game)
 
-
+		game.objectList.append(enemy_1)
+		for entity in game.objectList:
+			#entity.direction = 1
+			entity.flipImage()
 		
 class Level1(Level):
 	def __init__(self, game):
