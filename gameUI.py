@@ -126,6 +126,16 @@ def levelSelect(game):
 	for yPos in yPositions:
 		buttonList.append(pygame.Rect(600, yPos, 100, 50))
 
+	# Added button for introductory Level 0
+	buttonList.append(pygame.Rect(100, 100, 100, 50))
+	# Level 0 button code placed here to keep it together with the above line
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	level_tag = 'Level 0'
+	textSurfaceObj = fontObj.render(level_tag, True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (150, 125)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
 	for button in buttonList:
 		pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
 

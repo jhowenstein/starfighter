@@ -22,6 +22,15 @@ class Level(object):
 		
 	def updateAI(self):
 		pass
+
+# Introductory level intended to introduce gameplay
+class Level0(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		enemy_1 = BasicShip(3, 500, 100, 1, game)
+
+
 		
 class Level1(Level):
 	def __init__(self, game):
