@@ -79,7 +79,7 @@ class Ship(object):
 
 		self.commandList = []
 		self.damageList = []
-
+		
 
 	def move(self, direction):
 		step = self.speed
@@ -129,6 +129,11 @@ class Ship(object):
 
 	def flipImage(self):
 		self.shipImg = pygame.transform.flip(self.shipImg, False, True)
+		
+	def setImage(self, newImg):
+		self.shipImg = pygame.image.load(newImg)
+		self.width = self.shipImg.get_width()
+		self.height = self.shipImg.get_height()
 		
 	def fireWeapon(self, weapon, game):
 		if self.direction == 0:

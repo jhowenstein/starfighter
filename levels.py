@@ -29,6 +29,8 @@ class Level0(Level):
 		game.AI = True
 
 		enemy_1 = BasicShip(3, 500, 100, 1, game)
+		image = 'medium_enemy.png'
+		enemy_1.setImage(image)
 
 		game.objectList.append(enemy_1)
 		for entity in game.objectList:
