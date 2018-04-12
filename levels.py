@@ -29,8 +29,7 @@ class Level0(Level):
 		game.AI = True
 
 		enemy_1 = BasicShip(3, 500, 100, 1, game)
-		image = 'medium_enemy.png'
-		enemy_1.setImage(image)
+		enemy_1.setImage('ship2.png')
 
 		game.objectList.append(enemy_1)
 		for entity in game.objectList:
@@ -54,7 +53,7 @@ class Level1(Level):
 		game.objectList.append(enemy_3)
 	
 		for entity in game.objectList:
-			entity.direction = 1
+			entity.setImage('ship2.png')
 			entity.flipImage()
 			
 	def updateAI(self, game, counter):
@@ -84,6 +83,11 @@ class Level2(Level):
 		enemy_2 = BasicShip(4, 500, 200, 1, game)
 		enemy_3 = BasicShip(5, 600, 200, 1, game)
 		enemy_4 = LightShip(6, 500, 100, 1, game)
+		
+		enemy_1.setImage('ship2.png')
+		enemy_2.setImage('ship2.png')
+		enemy_3.setImage('ship2.png')
+		enemy_4.setImage('ship1.png')
 		
 		self.setAI(enemy_1, 1, 0)
 		self.setAI(enemy_2, 1, 0)
@@ -180,6 +184,7 @@ class Level3(Level):
 		game.objectList.append(enemy_8)
 
 		for entity in game.objectList:
+			entity.setImage('ship2.png')
 			entity.flipImage()  # Move this into the ship object
 			entity.bottomLim = game.WINDOWHEIGHT * .5
 
