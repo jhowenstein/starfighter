@@ -291,6 +291,92 @@ class Level4(Level):
 				rNum = randint(0,1)
 				if rNum:
 					entity.commandList.append(5)
+					
+class Level5(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		enemy_1 = BasicShip(3, 500, 200, 1, game)
+		enemy_2 = BasicShip(4, 300, 200, 1, game)
+		enemy_3 = BasicShip(5, 700, 200, 1, game)
+		
+		game.objectList.append(enemy_1)
+		game.objectList.append(enemy_2)
+		game.objectList.append(enemy_3)
+
+		for entity in game.objectList:
+			entity.setImage('ship2.png')
+			entity.flipImage()
+			entity.bottomLim = game.WINDOWHEIGHT * .5
+			entity.currMovement = []
+
+
+	def updateAI(self, game, counter):
+		for entity in game.objectList:
+			if counter % 10 == 0:
+				rNum = randint(0,9)
+				if rNum < 2:
+					entity.commandList = []
+				elif rNum < 4:
+					entity.commandList = [1]
+				elif rNum < 6:
+					entity.commandList = [2]
+				elif rNum < 8:
+					entity.commandList = [3]
+				elif rNum < 10:
+					entity.commandList = [4]
+				entity.currMovement = entity.commandList
+			else:
+				entity.commandList = entity.currMovement
+
+			if counter % 10 == 0:
+				rNum = randint(0,1)
+				if rNum:
+					entity.commandList.append(5)
+					
+class Level6(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		enemy_1 = BasicShip(3, 500, 200, 1, game)
+		enemy_2 = BasicShip(4, 300, 200, 1, game)
+		enemy_3 = BasicShip(5, 700, 200, 1, game)
+		
+		game.objectList.append(enemy_1)
+		game.objectList.append(enemy_2)
+		game.objectList.append(enemy_3)
+
+		for entity in game.objectList:
+			entity.setImage('ship2.png')
+			entity.flipImage()
+			entity.bottomLim = game.WINDOWHEIGHT * .5
+			entity.currMovement = []
+
+
+	def updateAI(self, game, counter):
+		if counter % 10 == 0:
+			rNum = randint(0,9)
+			if rNum < 2:
+				direction = []
+			elif rNum < 4:
+				direction = [1]
+			elif rNum < 6:
+				direction = [2]
+			elif rNum < 8:
+				direction = [3]
+			elif rNum < 10:
+				direction = [4]
+			
+			for entity in game.objectList:
+				entity.currMovement = direction
+			
+		for entity in game.objectList:
+			entity.commandList = entity.currMovement
+			if counter % 10 == 0:
+				rNum = randint(0,1)
+				if rNum == 1:
+					entity.commandList.append(5)
+	
 
 		
 
