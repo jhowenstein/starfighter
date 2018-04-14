@@ -270,21 +270,27 @@ class Level4(Level):
 
 
 	def updateAI(self, game, counter):
-		rNum = randint(0,9)
-		if rNum < 2:
-			enemy_1.commandList = []
-		elif rNum < 4:
-			enemy_1.commandList = [1]
-		elif rNum < 6:
-			enemy_1.commandList = [2]
-		elif rNum < 8:
-			enemy_1.commandList = [3]
-		elif rNum < 10:
-			enemy_1.commandList = [4]
+		for entity in game.objectList:
+			if counter % 10 == 0:
+				rNum = randint(0,9)
+				if rNum < 2:
+					entity.commandList = []
+				elif rNum < 4:
+					entity.commandList = [1]
+				elif rNum < 6:
+					entity.commandList = [2]
+				elif rNum < 8:
+					entity.commandList = [3]
+				elif rNum < 10:
+					entity.commandList = [4]
+				entity.currMovement = entity.commandList
+			else:
+				entity.commandList = entity.currMovement
 
-		if counter % 10 == 0:
-			if counter():
-				enemy_1.commandList.append(5)
+			if counter % 10 == 0:
+				rNum = randint(0,1)
+				if rNum:
+					entity.commandList.append(5)
 
 		
 
