@@ -8,30 +8,36 @@ import numpy as np
 
 
 '''
-Basic Ship Dimensions
-	Width: 76
-	Height: 67
-Standard_Ship
-	Width: 128
-	Height: 132
-Light_Ship
-	Width: 128
-	Height: 100
-Heavy_Ship
-	Width: 192
-	Height: 128
-Medium_Enemy
-	Width: 96
-	Height: 136
-Large_Enemy
-	Width: 200
-	Height: 164
-Small_Enemy
-	Width: 96
-	Height: 84
+ship0.png
+	width: 76
+	height: 67
 
+ship1.png
+	width: 60
+	height: 53
 
+ship2.png
+	width: 70
+	height: 55
+	
+ship3.png
+	width: 80
+	height: 83
+
+ship4.png
+	width: 70
+	height: 99
+
+ship5.png
+	width: 100
+	height: 67
+
+ship6.png
+	width: 120
+	height: 98
 '''
+
+
 class Command(IntEnum):
 	UP = 1
 	DOWN = 2

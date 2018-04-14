@@ -5,6 +5,7 @@ from starship_game_functions import *
 from starships import *
 from weapons import *
 from projectiles import *
+from random import *
 
 class Level(object):
 	def __init__(self, game):
@@ -228,6 +229,67 @@ class Level3(Level):
 		if counter == 0 or counter == 10 or counter == 20 or counter == 30:
 			command.append(5)
 		return command
+
+'''
+class Level4(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		game.objectList.append(LightShip(3, 300, 300, 1, game))
+		enemy_2 = LightShip(4, 400, 300, 1, game)
+		enemy_3 = LightShip(5, 500, 300, 1, game)
+		enemy_4 = LightShip(6, 600, 300, 1, game)
+		enemy_5 = LightShip(7, 700, 300, 1, game)
+
+		enemy_6 = LightShip(13, 250, 200, 1, game)
+		enemy_7 = LightShip(12, 350, 200, 1, game)
+		enemy_8 = LightShip(11, 450, 200, 1, game)
+		enemy_9 = LightShip(10, 550, 200, 1, game)
+		enemy_10 = LightShip(9, 650, 200, 1, game)
+		enemy_11 = LightShip(8, 750, 200, 1, game)
+
+		enemy_12 = LightShip(14, 300, 100, 1, game)
+		enemy_13 = LightShip(15, 400, 100, 1, game)
+		enemy_14 = LightShip(16, 500, 100, 1, game)
+		enemy_15 = LightShip(17, 600, 100, 1, game)
+		enemy_16 = LightShip(18, 700, 100, 1, game)
+'''
+
+class Level4(Level):
+	def __init__(self, game):
+		game.AI = True
+
+		enemy_1 = BasicShip(3, 500, 200, 1, game)
+		game.objectList.append(enemy_1)
+
+		enemy_1.setImage('ship2.png')
+		enemy_1.flipImage()
+		enemy_1.bottomLim = game.WINDOWHEIGHT * .5
+
+		enemy_1.currMovement = []
+
+
+	def updateAI(self, game, counter):
+		rNum = randint(0,9)
+		if rNum < 2:
+			enemy_1.commandList = []
+		elif rNum < 4:
+			enemy_1.commandList = [1]
+		elif rNum < 6:
+			enemy_1.commandList = [2]
+		elif rNum < 8:
+			enemy_1.commandList = [3]
+		elif rNum < 10:
+			enemy_1.commandList = [4]
+
+		if counter % 10 == 0:
+			if counter():
+				enemy_1.commandList.append(5)
+
+		
+
+
+
 
 
 
