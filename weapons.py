@@ -4,6 +4,7 @@ from enum import IntEnum
 from starship_game_functions import *
 from starships import *
 from projectiles import *
+from survival import *
 
 class Weapon(object):
 	def __init__(self):
@@ -37,3 +38,15 @@ class HeavyCannon(Weapon):
 
 	def release(self, locX, locY, direction, game):
 		game.projectileList.append(HeavyProjectile(locX, locY, direction))
+
+class CustomCannon(Weapon):
+	def __init__(self):
+		self.cooldownTime = 10
+		self.projectileSpeed = 5
+		self.projectileDamage = 10
+
+	def release(self, locX, locY, direction, game):
+		newProjectile = BasicProjectile(locX, locY, direction)
+		newProjectile.velocity = self.projectileSpeed
+		newProjectile.damage = self.projectileDamage
+		game.projectileList.append(newProjectile)

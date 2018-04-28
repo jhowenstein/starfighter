@@ -6,6 +6,7 @@ from weapons import *
 from projectiles import *
 from levels import *
 from gameUI import *
+from survival import *
 import numpy as np
 
 
@@ -22,6 +23,9 @@ class Game(object):
 		#self.commandList = []
 			
 		self.AI = False
+
+		# Object to store data for survivor mode
+		self.survivor = Survivor()
 
 		self.WINDOWHEIGHT = WINDOWHEIGHT
 		self.WINDOWWIDTH = WINDOWWIDTH

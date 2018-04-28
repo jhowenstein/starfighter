@@ -5,6 +5,7 @@ from starships import *
 from weapons import *
 from projectiles import *
 from starship_game_functions import *
+from survival import *
 import numpy as np
 
 def splashScreen(game):
@@ -71,6 +72,59 @@ def playerModeSelect(game):
 
 	return 0
 
+def gameTypeSelect(game):
+	WHITE = (255, 255, 255)
+	BLUE = (0, 0, 255)
+
+	buttonWidth = 150
+	buttonHeight = 50
+
+	game.DISPLAYSURF.fill(game.BG_COLOR)
+	# Select game mode font object
+	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	textSurfaceObj = fontObj.render('Select Game Mode', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	# Player 1 Button Rectangle
+	svButton_topLeftX = 275
+	svButton_topLeftY = 275
+	svbutton = pygame.Rect(svButton_topLeftX, svButton_topLeftY, buttonWidth, buttonHeight)
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, svbutton)
+	# Player 1 option font object
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	textSurfaceObj = fontObj.render('Survival', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (350,300)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	# Player 2 Button Rectangle
+	cpButton_topLeftX = 575
+	cpButton_topLeftY = 275
+	cpbutton = pygame.Rect(cpButton_topLeftX, cpButton_topLeftY, buttonWidth, buttonHeight)
+	pygame.draw.rect(game.DISPLAYSURF, BLUE, cpbutton)
+	# Player 2 option font object
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	textSurfaceObj = fontObj.render('Campaign', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (650,300)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	# Update screen
+	pygame.display.update()
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				mouseX, mouseY = event.pos
+				if buttonSelect(svbutton, mouseX, mouseY):
+					return 1
+				elif buttonSelect(cpbutton, mouseX, mouseY):
+					return 2
+
+	return 0
 
 def singlePlayerSetup(game):
 	WHITE = (255, 255, 255)

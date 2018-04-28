@@ -7,6 +7,7 @@ from weapons import *
 from projectiles import *
 from levels import *
 from gameUI import *
+from survival import *
 
 
 pygame.init()
@@ -27,17 +28,34 @@ pygame.display.set_caption('Starship PvP')
 #numberPlayers = 1
 
 splashScreen(game)
+
 numberPlayers = playerModeSelect(game)
 game.setPlayers(numberPlayers)
-#singlePlayerSetup(game)
-lvl = levelSelect(game)
-game.setLevel(lvl)
 
-game.player1.ship = BasicShip(1,500,500,0,game)
+if game.numberPlayers == 1:
+	spGameType = gameTypeSelect(game)
+	if spGameType == 1:
+		game.player1.ship = BasicShip(1,500,500,0,game)
+		playSurvival(game)
+	elif spGameType == 2:
+		lvl = levelSelect(game)
+		game.setLevel(lvl)
+		game.player1.ship = BasicShip(1,500,500,0,game)
+		playGame(game)
+elif game.numberPlayers == 2:
+	game.player1.ship = BasicShip(1,500,500,0,game)
+	game.player2.ship = BasicShip(2,500,100,1,game)
+	playgame(game)
+
+#singlePlayerSetup(game)
+#lvl = levelSelect(game)
+#game.setLevel(lvl)
+
+#game.player1.ship = BasicShip(1,500,500,0,game)
 #game.player1.ship = LightShip(1,500,500,0,game)
 #game.player1.ship = HeavyShip(1,500,500,0,game)
 
-playGame(game)
+#playGame(game)
 '''
 FPS = 30
 fpsClock = pygame.time.Clock()
