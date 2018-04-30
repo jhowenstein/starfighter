@@ -4,7 +4,7 @@ from enum import IntEnum
 from starship_game_functions import *
 from weapons import *
 from projectiles import *
-from survival import *
+#from survival import *
 import numpy as np
 
 

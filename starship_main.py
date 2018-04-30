@@ -7,7 +7,7 @@ from weapons import *
 from projectiles import *
 from levels import *
 from gameUI import *
-from survival import *
+#from survival import *
 
 
 pygame.init()

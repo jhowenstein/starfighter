@@ -70,17 +70,18 @@ def createRound(game):
 
 	xLoc = [500, 350, 650]
 	yLoc = 0
+	
 	for i in range(game.survivor.numEnemies):
 		shipID = i + 3
-		game.objectList.append(BasicShip(shipID, xLoc[i], yLoc, 1, game))
+		game.addShip(shipID, xLoc[i], yLoc, 1)
 
-	for entity in objectList:
+	for entity in game.objectList:
 		entity.speed = game.survivor.enemySpeed
-		entity.weaponA = CustomCannon()
+		#entity.weaponA = CustomCannon()
 		entity.weaponA.projectileSpeed = game.survivor.enemyProjSpeed
 		entity.weaponA.projectileDamage = game.survivor.enemyDamage
-		entity.weaponA.cooldownTime = game.enemyRefresh
-		entity.health = 50
+		entity.weaponA.cooldownTime = game.survivor.enemyRefresh
+		entity.health = game.survivor.enemyHealth
 		entity.bottomLim = game.WINDOWHEIGHT * .5
 		entity.setImage('ship3.png')
 		entity.flipImage()

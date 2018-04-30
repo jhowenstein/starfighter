@@ -4,7 +4,7 @@ from enum import IntEnum
 from starship_game_functions import *
 from starships import *
 from projectiles import *
-from survival import *
+#from survival import *
 
 class Weapon(object):
 	def __init__(self):

@@ -5,7 +5,7 @@ from starships import *
 from weapons import *
 from projectiles import *
 from starship_game_functions import *
-from survival import *
+#from survival import *
 import numpy as np
 
 def splashScreen(game):
