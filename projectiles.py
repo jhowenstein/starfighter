@@ -46,7 +46,7 @@ class Projectile(object):
 
 class BasicProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
-		self.velocity = 5
+		self.velocity = 6
 		self.damage = 10
 		self.direction = direction
 
@@ -60,7 +60,7 @@ class BasicProjectile(Projectile):
 
 class LightProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
-		self.velocity = 7
+		self.velocity = 8
 		self.damage = 5
 		self.direction = direction
 
@@ -74,7 +74,7 @@ class LightProjectile(Projectile):
 
 class HeavyProjectile(Projectile):
 	def __init__(self, locX, locY, direction):
-		self.velocity = 3
+		self.velocity = 4
 		self.damage = 20
 		self.direction = direction
 

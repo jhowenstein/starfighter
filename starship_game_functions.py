@@ -500,11 +500,11 @@ def updateEnemyStats(game):
 	RC = roundCount % 5
 
 	if RC == 0:
-		game.survivor.enemySpeed += 2
-	elif RC == 1:
 		game.survivor.enemyProjSpeed += 1
+	elif RC == 1:
+		game.survivor.enemySpeed += 1
 	elif RC == 2:
-		game.survivor.enemyDamage += 3
+		game.survivor.enemyDamage += 2
 	elif RC == 3:
 		game.survivor.enemyHealth += 10
 	elif RC == 4:

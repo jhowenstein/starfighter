@@ -215,7 +215,7 @@ class BasicShip(Ship):
 		
 		self.halfWidth = round(self.width / 2)
 
-		self.speed = 5
+		self.speed = 6
 		self.armor = 5
 		self.health = 100
 
@@ -255,7 +255,7 @@ class LightShip(Ship):
 		
 		self.halfWidth = round(self.width / 2)
 
-		self.speed = 7
+		self.speed = 8
 		self.armor = 3
 		self.health = 100
 
@@ -294,7 +294,7 @@ class HeavyShip(Ship):
 		
 		self.halfWidth = round(self.width / 2)
 
-		self.speed = 3
+		self.speed = 4
 		self.armor = 7
 		self.health = 100
 
