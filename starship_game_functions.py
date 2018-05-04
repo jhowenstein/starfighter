@@ -423,7 +423,7 @@ def updateSurvivor(game):
 	# Probably want something to update to the game totals here
 
 def updateSurvivorScoreboard(game):
-
+	pass
 	# Round count
 
 	# Enemies killed
