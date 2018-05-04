@@ -422,6 +422,15 @@ def updateSurvivor(game):
 
 	# Probably want something to update to the game totals here
 
+def updateSurvivorScoreboard(game):
+
+	# Round count
+
+	# Enemies killed
+
+	# User health
+
+
 
 def createRound(game):
 	game.objectList = []
