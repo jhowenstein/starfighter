@@ -29,6 +29,8 @@ class Game(object):
 
 		self.WINDOWHEIGHT = WINDOWHEIGHT
 		self.WINDOWWIDTH = WINDOWWIDTH
+
+		self.WINDOWHEIGHT_WITH_SCORE = WINDOWHEIGHT + 200
 		
 		self.incidenceMap = np.zeros((self.WINDOWHEIGHT, self.WINDOWWIDTH))
 		
@@ -439,7 +441,7 @@ def createRound(game):
 		entity.weaponA.cooldownTime = game.survivor.enemyRefresh
 		entity.health = game.survivor.enemyHealth
 		entity.bottomLim = game.WINDOWHEIGHT * .5
-		entity.setImage('ship3.png')
+		entity.setImage('ship2.png')
 		entity.flipImage()
 
 
@@ -450,6 +452,8 @@ def roundEntry(game):
 	fpsClock = pygame.time.Clock()
 
 	while game.objectList[0].shipY < 100:
+
+		processInput(game)
 
 		for entity in game.objectList:
 			entity.commandList = [2]
@@ -462,14 +466,6 @@ def roundEntry(game):
 
 def survivalAI(game):
 	counter = game.counter
-	mainLocY = game.objectList[0].shipY
-	left_right = 8
-	leftQuarter = game.WINDOWWIDTH * .4
-	rightQuarter = game.WINDOWWIDTH * .6
-	if mainLocY < leftQuarter:
-		left_right = 7
-	elif mainLocY > rightQuarter:
-		left_right = 9
 
 	if (counter % 10) == 0:
 		rNum = randint(0,9)

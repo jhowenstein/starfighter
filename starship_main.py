@@ -15,13 +15,13 @@ pygame.init()
 WINDOWWIDTH = 1000
 WINDOWHEIGHT = 600
 
-game = Game(WINDOWWIDTH,WINDOWHEIGHT)
+game = Game(WINDOWWIDTH,WINDOWHEIGHT_WITH_SCORE)
 
 BLACK = (0, 0, 0)
 
 game.BG_COLOR = BLACK
 
-game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT))
+game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT_WITH_SCORE))
 game.DISPLAYSURF.fill(game.BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
