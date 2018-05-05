@@ -231,7 +231,7 @@ def startCountdown(game):
 
 	for item in stringList:
 		game.DISPLAYSURF.fill(game.BG_COLOR)
-		fontObj = pygame.font.Font('freesansbold.ttf',48)
+		fontObj = pygame.font.Font('freesansbold.ttf',60)
 		textSurfaceObj = fontObj.render(item, True, (255,255,255))
 		textRectObj = textSurfaceObj.get_rect()
 		textRectObj.center = (500,300)

@@ -435,7 +435,7 @@ def updateSurvivorScoreboard(game):
 
 	displayTime = int(game.counter / 30)
 
-	xLoc = [300, 500, 700, 100]
+	xLoc = [400, 600, 800, 200]
 	# Centers for text rects should be 300, 500, 700
 	# Round count (X center = 300)
 	fontObj = pygame.font.Font('freesansbold.ttf',18)
@@ -499,37 +499,37 @@ def survivalFinalScreen(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
 	textSurfaceObj = fontObj.render('Game Rounds Completed', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 300)
+	textRectObj.center = (500, 150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	
-	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.survivor.roundCount), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 325)
+	textRectObj.center = (500, 200)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
 	textSurfaceObj = fontObj.render('Enemies Destroyed', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 450)
+	textRectObj.center = (500, 300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	
-	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.survivor.roundCount), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 475)
+	textRectObj.center = (500, 350)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
-	textSurfaceObj = fontObj.render('Total Game Time', True, (255,255,255))
+	textSurfaceObj = fontObj.render('Total Game Time (Seconds)', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 600)
+	textRectObj.center = (500, 450)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	
-	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(displayTime), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, 625)
+	textRectObj.center = (500, 500)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	pygame.display.update()
