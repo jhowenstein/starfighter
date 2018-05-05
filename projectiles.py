@@ -13,6 +13,8 @@ class Projectile(object):
 		self.damage = 0
 		self.direction = direction # 0 indicates upward, 1 indicates downward
 		
+		self.incidenceBuffer = 11
+		
 		self.color = (255, 255, 255) # white default
 
 		self.locX = locX
@@ -32,12 +34,15 @@ class Projectile(object):
 		rendX = self.locX - offset - 1
 		
 		# Check for object contact
-		locationVal = game.incidenceMap[self.locY, self.locX]
-		if locationVal > 0:
-			game.impactList.append(ImpactObject(locationVal, self.damage))
-			self.color = (255, 0 , 0)
-			pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX - offset, self.locY - offset, self.width * 2, self.height * 2))
-			return False
+		if self.incidenceBuffer > 0:
+			self.incidenceBuffer -= 1
+		else:
+			locationVal = game.incidenceMap[self.locY, self.locX]
+			if locationVal > 0:
+				game.impactList.append(ImpactObject(locationVal, self.damage))
+				self.color = (255, 0 , 0)
+				pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX - offset, self.locY - offset, self.width * 2, self.height * 2))
+				return False
 			
 		pygame.draw.rect(game.DISPLAYSURF, self.color, (rendX, self.locY, self.width, self.height))
 		return True
@@ -49,7 +54,9 @@ class BasicProjectile(Projectile):
 		self.velocity = 6
 		self.damage = 10
 		self.direction = direction
-
+		
+		self.incidenceBuffer = 11
+		
 		self.color = (255, 255, 255) # white default
 		
 		self.locX = locX
@@ -63,6 +70,8 @@ class LightProjectile(Projectile):
 		self.velocity = 8
 		self.damage = 5
 		self.direction = direction
+		
+		self.incidenceBuffer = 11
 
 		self.color = (255, 255, 255) # white default
 		
@@ -77,6 +86,8 @@ class HeavyProjectile(Projectile):
 		self.velocity = 4
 		self.damage = 20
 		self.direction = direction
+		
+		self.incidenceBuffer = 11
 
 		self.color = (255, 255, 255) # white default
 		

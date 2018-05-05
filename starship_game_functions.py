@@ -33,7 +33,7 @@ class Game(object):
 		self.WINDOWHEIGHT = WINDOWHEIGHT
 		self.WINDOWWIDTH = WINDOWWIDTH
 
-		self.WINDOWHEIGHT_WITH_SCORE = WINDOWHEIGHT + 200
+		self.WINDOWHEIGHT_WITH_SCORE = WINDOWHEIGHT + 100
 		
 		self.incidenceMap = np.zeros((self.WINDOWHEIGHT, self.WINDOWWIDTH))
 		
@@ -434,22 +434,42 @@ def updateSurvivorScoreboard(game):
 
 	# Centers for text rects should be 300, 500, 700
 	# Round count (X center = 300)
-	fontObj = pygame.font.Font('freesansbold.ttf',48)
-	textSurfaceObj = fontObj.render(str(game.roundCount), True, (255,255,255))
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Game Round', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	textRectObj.center = (300, game.WINDOWHEIGHT + 20)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
+	textSurfaceObj = fontObj.render(str(game.survivor.roundCount), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (300, game.WINDOWHEIGHT + 50)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
 	# Enemies killed
-	fontObj = pygame.font.Font('freesansbold.ttf',48)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Enemies Killed', True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500, game.WINDOWHEIGHT + 20)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.enemiesKilled), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (500, game.WINDOWHEIGHT + 100)
+	textRectObj.center = (500, game.WINDOWHEIGHT + 50)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
 	# User health (X center = 700)
-	fontObj = pygame.font.Font('freesansbold.ttf',48)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('User Health', True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (700, game.WINDOWHEIGHT + 20)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (700, game.WINDOWHEIGHT + 100)
+	textRectObj.center = (700, game.WINDOWHEIGHT + 50)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	return
@@ -494,6 +514,8 @@ def roundEntry(game):
 			entity.commandList = [2]
 
 		updateGame(game)
+		
+		updateSurvivorScoreboard(game)
 
 		pygame.display.update()
 
