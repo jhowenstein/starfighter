@@ -14,7 +14,8 @@ import numpy as np
 class Game(object):
 	def __init__(self, WINDOWWIDTH, WINDOWHEIGHT):
 		self.status = True # Defines whether the game is currenty active and valid
-		
+		self.scoreBoard = True
+
 		self.objectList = []
 		self.projectileList = []
 		self.objectGarbage = []
@@ -405,6 +406,8 @@ def gameLoop(game):
 
 		updateGame(game)
 
+		updateSurvivorScoreboard(game)
+
 		pygame.display.update()
 		
 		fpsClock.tick(FPS)
@@ -423,12 +426,34 @@ def updateSurvivor(game):
 	# Probably want something to update to the game totals here
 
 def updateSurvivorScoreboard(game):
-	pass
-	# Round count
+	# Create line dividing playing area from scoreboard
+	pygame.draw.line(game.DISPLAYSURF, (255,255,255), (0, game.WINDOWHEIGHT), (game.WINDOWWIDTH-1, game.WINDOWHEIGHT), 2)
 
+	# Centers for text rects should be 300, 500, 700
+	# Round count (X center = 300)
+	fontObj = pygame.font.Font('freesansbold.ttf',48)
+	textSurfaceObj = fontObj.render(str(game.roundCount), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Enemies killed
+	'''
+	fontObj = pygame.font.Font('freesansbold.ttf',48)
+	textSurfaceObj = fontObj.render(str(game.enemiesKilled), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	'''
+	# User health (X center = 700)
+	fontObj = pygame.font.Font('freesansbold.ttf',48)
+	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
-	# User health
+	return
+
+
 
 
 
