@@ -25,19 +25,17 @@ game.DISPLAYSURF = pygame.display.set_mode((game.WINDOWWIDTH, game.WINDOWHEIGHT_
 game.DISPLAYSURF.fill(game.BG_COLOR)
 pygame.display.set_caption('Starship PvP')
 
-#numberPlayers = 1
-
 splashScreen(game)
 
 numberPlayers = playerModeSelect(game)
 game.setPlayers(numberPlayers)
 
 if game.numberPlayers == 1:
-	spGameType = gameTypeSelect(game)
-	if spGameType == 1:
+	game.spGameType = gameTypeSelect(game)
+	if game.spGameType == 1:
 		game.player1.ship = BasicShip(1,500,500,0,game)
 		playSurvival(game)
-	elif spGameType == 2:
+	elif game.spGameType == 2:
 		lvl = levelSelect(game)
 		game.setLevel(lvl)
 		game.player1.ship = BasicShip(1,500,500,0,game)
@@ -73,6 +71,8 @@ while game.status == True:
 	fpsClock.tick(FPS)
 '''
 finalScreen(game)
+if game.spGameType == 1:
+	survivalFinalScreen(game)
 
 pygame.quit()
 sys.exit()
