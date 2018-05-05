@@ -22,7 +22,9 @@ class Game(object):
 		self.projectileGarbage = []
 		self.impactList = []
 		#self.commandList = []
-			
+		
+		self.enemiesKilled = 0
+
 		self.AI = False
 
 		# Object to store data for survivor mode
@@ -191,6 +193,7 @@ def updateGame(game):
 		alive = game.objectList[i].update(game)
 		if alive == False:
 			game.objectGarbage.append(i)
+			game.enemiesKilled += 1
 		i += 1
 
 	i = 0
@@ -437,18 +440,16 @@ def updateSurvivorScoreboard(game):
 	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	# Enemies killed
-	'''
 	fontObj = pygame.font.Font('freesansbold.ttf',48)
 	textSurfaceObj = fontObj.render(str(game.enemiesKilled), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	textRectObj.center = (500, game.WINDOWHEIGHT + 100)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-	'''
 	# User health (X center = 700)
 	fontObj = pygame.font.Font('freesansbold.ttf',48)
 	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = (300, game.WINDOWHEIGHT + 100)
+	textRectObj.center = (700, game.WINDOWHEIGHT + 100)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	return
