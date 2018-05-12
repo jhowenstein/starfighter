@@ -292,6 +292,8 @@ def buttonSelect(button, mouseX, mouseY):
 def twoPlayerSelectShip(game):
 	xLoc = [300, 500, 700]
 	yLoc = [400, 400, 400]
+	
+	WHITE = (255, 255, 255)
 
 	option1 = pygame.image.load('ship1.png')
 	halfWidth1 = round(option1.get_width() / 2)
@@ -328,6 +330,8 @@ def twoPlayerSelectShip(game):
 	game.DISPLAYSURF.blit(option2, (topLeft2_X, topLeft2_Y))
 	# Ship option 3
 	game.DISPLAYSURF.blit(option3, (topLeft3_X, topLeft3_Y))
+	
+	pygame.display.update()
 
 
 	# Wait for selection here
@@ -341,10 +345,14 @@ def twoPlayerSelectShip(game):
 				mouseX, mouseY = event.pos
 				if buttonSelect(option1Rect, mouseX, mouseY):
 					game.player1.shipType = 1
+					break
 				elif buttonSelect(option2Rect, mouseX, mouseY):
 					game.player1.shipType = 2
+					break
 				elif buttonSelect(option3Rect, mouseX, mouseY):
 					game.player1.shipType = 3
+					break
+					
 
 	# Player 2 Ship Select
 	game.DISPLAYSURF.fill(game.BG_COLOR)
@@ -359,6 +367,8 @@ def twoPlayerSelectShip(game):
 	game.DISPLAYSURF.blit(option2, (topLeft2_X, topLeft2_Y))
 	# Ship option 3
 	game.DISPLAYSURF.blit(option3, (topLeft3_X, topLeft3_Y))
+	
+	pygame.display.update()
 
 	# Wait for selection here
 	# Wait for selection here
@@ -372,10 +382,13 @@ def twoPlayerSelectShip(game):
 				mouseX, mouseY = event.pos
 				if buttonSelect(option1Rect, mouseX, mouseY):
 					game.player2.shipType = 1
+					break
 				elif buttonSelect(option2Rect, mouseX, mouseY):
 					game.player2.shipType = 2
+					break
 				elif buttonSelect(option3Rect, mouseX, mouseY):
 					game.player2.shipType = 3
+					break
 
 	return
 
