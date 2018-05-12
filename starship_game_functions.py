@@ -24,6 +24,8 @@ class Game(object):
 		#self.commandList = []
 		
 		self.enemiesDestroyed = 0
+		
+		self.spGameType = 0
 
 		self.AI = False
 
@@ -183,9 +185,11 @@ def updateGame(game):
 	if len(game.impactList) > 0:
 		handleImpact(game)
 	
-	game.player1.status = game.player1.ship.update(game)
-	
-	#statusPlayer2 = game.player2.ship.update(game)
+	if game.numberPlayers == 1:
+		game.player1.status = game.player1.ship.update(game)
+	elif game.numberPlayers == 2:
+		game.player1.status = game.player1.ship.update(game)
+		game.player2.status = game.player2.ship.update(game)
 	
 	if game.AI == True:
 		game.level.updateAI(game, game.counter)

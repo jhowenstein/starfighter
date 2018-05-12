@@ -44,25 +44,28 @@ elif game.numberPlayers == 2:
 	playerOneSelectShip(game)
 	if game.player1.shipType == 1:
 		game.player1.ship = LightShip(1,500,500,0,game)
-		game.player1.ship.shipImg = pygame.image.load('ship1.png')
+		game.player1.ship.setImage('ship1.png')
 	elif game.player1.shipType == 2:
 		game.player1.ship = BasicShip(1,500,500,0,game)
-		game.player1.ship.shipImg = pygame.image.load('ship2.png')
+		game.player1.ship.setImage('ship2.png')
 	elif game.player1.shipType == 3:
 		game.player1.ship = HeavyShip(1,500,500,0,game)
-		game.player1.ship.shipImg = pygame.image.load('ship3.png')
+		game.player1.ship.setImage('ship3.png')
 
 	playerTwoSelectShip(game)
 	if game.player2.shipType == 1:
 		game.player2.ship = LightShip(2,500,100,1,game)
-		game.player2.ship.shipImg = pygame.image.load('ship1.png')
+		game.player2.ship.setImage('ship1.png')
+		game.player2.ship.flipImage()
 	elif game.player2.shipType == 2:
 		game.player2.ship = BasicShip(2,500,100,1,game)
-		game.player2.ship.shipImg = pygame.image.load('ship2.png')
+		game.player2.ship.setImage('ship2.png')
+		game.player2.ship.flipImage()
 	elif game.player2.shipType == 3:
 		game.player2.ship = HeavyShip(2,500,100,1,game)
-		game.player2.ship.shipImg = pygame.image.load('ship3.png')
-	playgame(game)
+		game.player2.ship.setImage('ship3.png')
+		game.player2.ship.flipImage()
+	playGame(game)
 
 finalScreen(game)
 
