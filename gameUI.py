@@ -289,7 +289,7 @@ def buttonSelect(button, mouseX, mouseY):
 	else:
 		return False
 
-def twoPlayerSelectShip(game):
+def playerOneSelectShip(game):
 	xLoc = [300, 500, 700]
 	yLoc = [400, 400, 400]
 	
@@ -345,14 +345,41 @@ def twoPlayerSelectShip(game):
 				mouseX, mouseY = event.pos
 				if buttonSelect(option1Rect, mouseX, mouseY):
 					game.player1.shipType = 1
-					break
+					return
 				elif buttonSelect(option2Rect, mouseX, mouseY):
 					game.player1.shipType = 2
-					break
+					return
 				elif buttonSelect(option3Rect, mouseX, mouseY):
 					game.player1.shipType = 3
-					break
+					return
 					
+
+def playerTwoSelectShip(game):
+	xLoc = [300, 500, 700]
+	yLoc = [400, 400, 400]
+	
+	WHITE = (255, 255, 255)
+
+	option1 = pygame.image.load('ship1.png')
+	halfWidth1 = round(option1.get_width() / 2)
+	halfHeight1 = round(option1.get_height() / 2)
+	topLeft1_X = xLoc[0] - halfWidth1
+	topLeft1_Y = yLoc[0] - halfHeight1
+	option1Rect = pygame.Rect(topLeft1_X, topLeft1_Y, option1.get_width(), option1.get_height())
+
+	option2 = pygame.image.load('ship2.png')
+	halfWidth2 = round(option2.get_width() / 2)
+	halfHeight2 = round(option2.get_height() / 2)
+	topLeft2_X = xLoc[1] - halfWidth2
+	topLeft2_Y = yLoc[1] - halfHeight2
+	option2Rect = pygame.Rect(topLeft2_X, topLeft2_Y, option2.get_width(), option2.get_height())
+
+	option3 = pygame.image.load('ship3.png')
+	halfWidth3 = round(option3.get_width() / 2)
+	halfHeight3 = round(option3.get_height() / 2)
+	topLeft3_X = xLoc[2] - halfWidth3
+	topLeft3_Y = yLoc[2] - halfHeight3
+	option3Rect = pygame.Rect(topLeft3_X, topLeft3_Y, option3.get_width(), option3.get_height())
 
 	# Player 2 Ship Select
 	game.DISPLAYSURF.fill(game.BG_COLOR)
@@ -371,7 +398,6 @@ def twoPlayerSelectShip(game):
 	pygame.display.update()
 
 	# Wait for selection here
-	# Wait for selection here
 	while True:
 		eventList = pygame.event.get()
 		for event in eventList:
@@ -382,13 +408,11 @@ def twoPlayerSelectShip(game):
 				mouseX, mouseY = event.pos
 				if buttonSelect(option1Rect, mouseX, mouseY):
 					game.player2.shipType = 1
-					break
+					return
 				elif buttonSelect(option2Rect, mouseX, mouseY):
 					game.player2.shipType = 2
-					break
+					return
 				elif buttonSelect(option3Rect, mouseX, mouseY):
 					game.player2.shipType = 3
-					break
-
-	return
+					return
 
