@@ -41,36 +41,30 @@ if game.numberPlayers == 1:
 		game.player1.ship = BasicShip(1,500,500,0,game)
 		playGame(game)
 elif game.numberPlayers == 2:
-	game.player1.ship = BasicShip(1,500,500,0,game)
-	game.player2.ship = BasicShip(2,500,100,1,game)
+	twoPlayerSelectShip(game)
+	if game.player1.shipType == 1:
+		game.player1.ship = LightShip(1,500,500,0,game)
+		game.player1.ship.shipImg = pygame.image.load('ship1.png')
+	elif game.player1.shipType == 2:
+		game.player1.ship = BasicShip(1,500,500,0,game)
+		game.player1.ship.shipImg = pygame.image.load('ship2.png')
+	elif game.player1.shipType == 3:
+		game.player1.ship = HeavyShip(1,500,500,0,game)
+		game.player1.ship.shipImg = pygame.image.load('ship3.png')
+
+	if game.player2.shipType == 1:
+		game.player2.ship = LightShip(2,500,100,1,game)
+		game.player2.ship.shipImg = pygame.image.load('ship1.png')
+	elif game.player2.shipType == 2:
+		game.player2.ship = BasicShip(2,500,100,1,game)
+		game.player2.ship.shipImg = pygame.image.load('ship2.png')
+	elif game.player2.shipType == 3:
+		game.player2.ship = HeavyShip(2,500,100,1,game)
+		game.player2.ship.shipImg = pygame.image.load('ship3.png')
 	playgame(game)
 
-#singlePlayerSetup(game)
-#lvl = levelSelect(game)
-#game.setLevel(lvl)
-
-#game.player1.ship = BasicShip(1,500,500,0,game)
-#game.player1.ship = LightShip(1,500,500,0,game)
-#game.player1.ship = HeavyShip(1,500,500,0,game)
-
-#playGame(game)
-'''
-FPS = 30
-fpsClock = pygame.time.Clock()
-
-startCountdown(game)
-
-while game.status == True:
-
-	processInput(game)
-
-	updateGame(game)
-
-	pygame.display.update()
-	
-	fpsClock.tick(FPS)
-'''
 finalScreen(game)
+
 if game.spGameType == 1:
 	survivalFinalScreen(game)
 

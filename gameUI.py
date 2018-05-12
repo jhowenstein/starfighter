@@ -289,3 +289,93 @@ def buttonSelect(button, mouseX, mouseY):
 	else:
 		return False
 
+def twoPlayerSelectShip(game):
+	xLoc = [300, 500, 700]
+	yLoc = [400, 400, 400]
+
+	option1 = pygame.image.load('ship1.png')
+	halfWidth1 = round(option1.get_width() / 2)
+	halfHeight1 = round(option1.get_height() / 2)
+	topLeft1_X = xLoc[0] - halfWidth1
+	topLeft1_Y = yLoc[0] - halfHeight1
+	option1Rect = pygame.Rect(topLeft1_X, topLeft1_Y, option1.get_width(), option1.get_height())
+
+	option2 = pygame.image.load('ship2.png')
+	halfWidth2 = round(option2.get_width() / 2)
+	halfHeight2 = round(option2.get_height() / 2)
+	topLeft2_X = xLoc[1] - halfWidth2
+	topLeft2_Y = yLoc[1] - halfHeight2
+	option2Rect = pygame.Rect(topLeft2_X, topLeft2_Y, option2.get_width(), option2.get_height())
+
+	option3 = pygame.image.load('ship3.png')
+	halfWidth3 = round(option3.get_width() / 2)
+	halfHeight3 = round(option3.get_height() / 2)
+	topLeft3_X = xLoc[2] - halfWidth3
+	topLeft3_Y = yLoc[2] - halfHeight3
+	option3Rect = pygame.Rect(topLeft3_X, topLeft3_Y, option3.get_width(), option3.get_height())
+
+	# Player 1 Ship Select
+	game.DISPLAYSURF.fill(game.BG_COLOR)
+	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	textSurfaceObj = fontObj.render('Player 1 - Select Ship Type', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	# Ship option 1
+	game.DISPLAYSURF.blit(option1, (topLeft1_X, topLeft1_Y))
+	# Ship option 2
+	game.DISPLAYSURF.blit(option2, (topLeft2_X, topLeft2_Y))
+	# Ship option 3
+	game.DISPLAYSURF.blit(option3, (topLeft3_X, topLeft3_Y))
+
+
+	# Wait for selection here
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				mouseX, mouseY = event.pos
+				if buttonSelect(option1Rect, mouseX, mouseY):
+					game.player1.shipType = 1
+				elif buttonSelect(option2Rect, mouseX, mouseY):
+					game.player1.shipType = 2
+				elif buttonSelect(option3Rect, mouseX, mouseY):
+					game.player1.shipType = 3
+
+	# Player 2 Ship Select
+	game.DISPLAYSURF.fill(game.BG_COLOR)
+	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	textSurfaceObj = fontObj.render('Player 2 - Select Ship Type', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	game.DISPLAYSURF.blit(option1, (topLeft1_X, topLeft1_Y))
+	# Ship option 2
+	game.DISPLAYSURF.blit(option2, (topLeft2_X, topLeft2_Y))
+	# Ship option 3
+	game.DISPLAYSURF.blit(option3, (topLeft3_X, topLeft3_Y))
+
+	# Wait for selection here
+	# Wait for selection here
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				mouseX, mouseY = event.pos
+				if buttonSelect(option1Rect, mouseX, mouseY):
+					game.player2.shipType = 1
+				elif buttonSelect(option2Rect, mouseX, mouseY):
+					game.player2.shipType = 2
+				elif buttonSelect(option3Rect, mouseX, mouseY):
+					game.player2.shipType = 3
+
+	return
+

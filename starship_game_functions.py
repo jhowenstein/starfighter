@@ -103,6 +103,7 @@ class Player(object):
 		self.name = name
 		self.ship = None
 		self.status = True
+		self.shipType = 0 # used in 2 player select
 
 		self.userControl = Control.Keyboard_A
 		
