@@ -159,8 +159,12 @@ def singlePlayerSetup(game):
 	time.sleep(3)
 
 def levelSelect(game):
+
+	levelsImplemented = 4 # Will be romoved once all ten levels are created
+
 	WHITE = (255, 255, 255)
 	BLUE = (0, 0, 255)
+	LIGHTER_BLUE = (0, 0, 127)
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	# Level Select Header Object
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
@@ -183,8 +187,13 @@ def levelSelect(game):
 	for yPos in yPositions:
 		buttonList.append(pygame.Rect(600, yPos, 100, 50))
 
+	i = 0 # This will be romoved once all levels have been implemented
 	for button in buttonList:
-		pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
+		if i < levelsImplemented:
+			pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
+		else:
+			pygame.draw.rect(game.DISPLAYSURF,LIGHTER_BLUE, button)
+		i += 1
 
 	for i in range(5):
 		fontObj = pygame.font.Font('freesansbold.ttf',24)

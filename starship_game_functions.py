@@ -93,7 +93,7 @@ class Game(object):
 		elif player == 2:
 			self.player2.userControl = method
 			
-	def addShip(self,ID, locX, locY, direction):
+	def addSurvivalEnemy(self,ID, locX, locY, direction):
 		newShip = BasicShip(ID, locX, locY, direction, self)
 		newShip.weaponA = CustomCannon()
 		self.objectList.append(newShip)
@@ -219,6 +219,13 @@ def updateGame(game):
 
 	game.objectGarbage = []
 	game.projectileGarbage = []
+
+	if game.numberPlayers == 1:
+		if game.spGameType == 1:
+			updateSinglePlayerScoreboard(game)
+	elif game.numberPlayers == 2:
+		updateTwoPlayerScoreboard(game)
+		# Move update survivor scoreboard into here later
 	
 	game.status = gameStatus(game)
 
@@ -434,6 +441,59 @@ def updateSurvivor(game):
 
 	# Probably want something to update to the game totals here
 
+def updateSinglePlayerScoreboard(game):
+	# Create line dividing playing area from scoreboard
+	pygame.draw.line(game.DISPLAYSURF, (255,255,255), (0, game.WINDOWHEIGHT), (game.WINDOWWIDTH-1, game.WINDOWHEIGHT), 2)
+
+	xLoc = [700]
+
+	# Player 1 health (X center = 700)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Player 1 Health', True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], game.WINDOWHEIGHT + 20)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
+	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 50)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+
+def updateTwoPlayerScoreboard(game):
+	# Create line dividing playing area from scoreboard
+	pygame.draw.line(game.DISPLAYSURF, (255,255,255), (0, game.WINDOWHEIGHT), (game.WINDOWWIDTH-1, game.WINDOWHEIGHT), 2)
+
+	xLoc = [300, 700]
+
+	# Player 1 health (X center = 700)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Player 1 Health', True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[1], game.WINDOWHEIGHT + 20)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
+	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = ( xLoc[1], game.WINDOWHEIGHT + 50)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	# Player 1 health (X center = 700)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Player 2 Health', True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], game.WINDOWHEIGHT + 20)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
+	textSurfaceObj = fontObj.render(str(game.player2.ship.health), True, (255,255,255))
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 50)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+
 def updateSurvivorScoreboard(game):
 	# Create line dividing playing area from scoreboard
 	pygame.draw.line(game.DISPLAYSURF, (255,255,255), (0, game.WINDOWHEIGHT), (game.WINDOWWIDTH-1, game.WINDOWHEIGHT), 2)
@@ -470,7 +530,7 @@ def updateSurvivorScoreboard(game):
 	
 	# User health (X center = 700)
 	fontObj = pygame.font.Font('freesansbold.ttf',18)
-	textSurfaceObj = fontObj.render('User Health', True, (255,255,255))
+	textSurfaceObj = fontObj.render('Player 1 Health', True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (xLoc[2], game.WINDOWHEIGHT + 20)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
@@ -548,11 +608,10 @@ def createRound(game):
 	
 	for i in range(game.survivor.numEnemies):
 		shipID = i + 3
-		game.addShip(shipID, xLoc[i], yLoc, 1)
+		game.addSurvivalEnemy(shipID, xLoc[i], yLoc, 1)
 
 	for entity in game.objectList:
 		entity.speed = game.survivor.enemySpeed
-		#entity.weaponA = CustomCannon()
 		entity.weaponA.projectileSpeed = game.survivor.enemyProjSpeed
 		entity.weaponA.projectileDamage = game.survivor.enemyDamage
 		entity.weaponA.cooldownTime = game.survivor.enemyRefresh
