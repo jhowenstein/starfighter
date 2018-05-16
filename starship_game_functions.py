@@ -57,6 +57,7 @@ class Game(object):
 		elif numberPlayers == 2:
 			self.player1 = Player("Player One")
 			self.player2 = Player("Player Two")
+			self.player2.userControl = Control.Keyboard_B
 		else: 
 			print("Invalid Player Number Entered")
 			pygame.quit()
@@ -185,7 +186,7 @@ def processInput(game):
 				sys.exit()
 			handleKeyboard(game.player1, event)
 			handleKeyboard(game.player2, event)
-			
+
 		translateCommands(game.player1)
 		translateCommands(game.player2)
 
