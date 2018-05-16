@@ -16,7 +16,7 @@ def splashScreen(game):
 	textRectObj.center = (500,300)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	pygame.display.update()
-	time.sleep(5)
+	time.sleep(3)
 
 def playerModeSelect(game):
 	WHITE = (255, 255, 255)
@@ -424,4 +424,35 @@ def playerTwoSelectShip(game):
 				elif buttonSelect(option3Rect, mouseX, mouseY):
 					game.player2.shipType = 3
 					return
+
+def displayControls(game):
+	game.DISPLAYSURF.fill(game.BG_COLOR)
+	image = pygame.image.load('keyboard.jpg')
+	imageWidth = image.get_width()
+	imageHeight = image.get_height()
+	topLeftX = 500 - round(imageWidth / 2)
+	topLeftY = 300 - rount(imageHeight / 2)
+	game.DISPLAYSURF.blit(image, (topLeftX, topLeftY))
+
+	fontObj = pygame.font.Font('freesansbold.ttf',28)
+	textSurfaceObj = fontObj.render('Click to Continue', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,500)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	pygame.display.update()
+
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				return
+
+
+
+
+
 

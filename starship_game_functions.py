@@ -163,19 +163,31 @@ def playGame(game):
 def processInput(game):
 	# Process input player 1
 	
-	if game.player1.userControl == Control.Keyboard_A or game.player1.userControl == Control.Keyboard_B:
+	if game.numberPlayers == 1:
+		if game.player1.userControl == Control.Keyboard_A or game.player1.userControl == Control.Keyboard_B:
+			eventList = pygame.event.get()
+			for event in eventList:
+				if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+					pygame.quit()
+					sys.exit()
+				handleKeyboard(game.player1, event)
+		elif game.userControl == Control.Controller:
+			print("Controller not yet supported")
+			pygame.quit()
+			sys.exit()
+
+		translateCommands(game.player1)
+	elif game.numberPlayers == 2:
 		eventList = pygame.event.get()
 		for event in eventList:
 			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
 				pygame.quit()
 				sys.exit()
 			handleKeyboard(game.player1, event)
-	elif game.userControl == Control.Controller:
-		print("Controller not yet supported")
-		pygame.quit()
-		sys.exit()
-	
-	translateCommands(game.player1)
+			handleKeyboard(game.player2, event)
+			
+		translateCommands(game.player1)
+		translateCommands(game.player2)
 
 def updateGame(game):
 	game.counter += 1
