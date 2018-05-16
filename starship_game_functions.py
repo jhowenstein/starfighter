@@ -221,11 +221,11 @@ def updateGame(game):
 	game.projectileGarbage = []
 
 	if game.numberPlayers == 1:
-		if game.spGameType == 1:
+		# Move update survivor scoreboard into here later
+		if game.spGameType == 2:
 			updateSinglePlayerScoreboard(game)
 	elif game.numberPlayers == 2:
 		updateTwoPlayerScoreboard(game)
-		# Move update survivor scoreboard into here later
 	
 	game.status = gameStatus(game)
 

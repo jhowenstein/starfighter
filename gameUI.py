@@ -164,7 +164,7 @@ def levelSelect(game):
 
 	WHITE = (255, 255, 255)
 	BLUE = (0, 0, 255)
-	LIGHTER_BLUE = (0, 0, 127)
+	LESS_BLUE = (0, 0, 127)
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	# Level Select Header Object
 	fontObj = pygame.font.Font('freesansbold.ttf',36)
@@ -189,10 +189,10 @@ def levelSelect(game):
 
 	i = 0 # This will be romoved once all levels have been implemented
 	for button in buttonList:
-		if i < levelsImplemented:
+		if i <= levelsImplemented:
 			pygame.draw.rect(game.DISPLAYSURF, BLUE, button)
 		else:
-			pygame.draw.rect(game.DISPLAYSURF,LIGHTER_BLUE, button)
+			pygame.draw.rect(game.DISPLAYSURF,LESS_BLUE, button)
 		i += 1
 
 	for i in range(5):

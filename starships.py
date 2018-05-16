@@ -75,7 +75,7 @@ class Ship(object):
 		
 		
 		if self.ID == 1:
-			self.topLim = game.WINDOWHEIGHT * .75
+			self.topLim = game.WINDOWHEIGHT * .6
 			self.bottomLim = game.WINDOWHEIGHT
 		elif self.ID > 1:
 			self.topLim = 0
@@ -233,7 +233,7 @@ class BasicShip(Ship):
 			self.shipY = initY - self.shipImg.get_height()
 		
 		if self.ID == 1:
-			self.topLim = game.WINDOWHEIGHT * .75
+			self.topLim = game.WINDOWHEIGHT * .6
 			self.bottomLim = game.WINDOWHEIGHT
 		elif self.ID > 1:
 			self.topLim = 0
@@ -273,7 +273,7 @@ class LightShip(Ship):
 			self.shipY = initY - self.shipImg.get_height()
 
 		if self.ID == 1:
-			self.topLim = game.WINDOWHEIGHT * .75
+			self.topLim = game.WINDOWHEIGHT * .6
 			self.bottomLim = game.WINDOWHEIGHT
 		elif self.ID > 1:
 			self.topLim = 0
@@ -312,7 +312,7 @@ class HeavyShip(Ship):
 			self.shipY = initY - self.shipImg.get_height()
 
 		if self.ID == 1:
-			self.topLim = game.WINDOWHEIGHT * .75
+			self.topLim = game.WINDOWHEIGHT * .6
 			self.bottomLim = game.WINDOWHEIGHT
 		elif self.ID > 1:
 			self.topLim = 0
