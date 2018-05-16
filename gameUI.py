@@ -289,7 +289,7 @@ def finalScreen(game):
 		textRectObj.center = (500,300)
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 		pygame.display.update()
-		time.sleep(5)
+		time.sleep(3)
 
 
 def buttonSelect(button, mouseX, mouseY):
@@ -426,12 +426,14 @@ def playerTwoSelectShip(game):
 					return
 
 def displayControls(game):
+	WHITE = (255, 255, 255)
+	
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	image = pygame.image.load('keyboard.jpg')
 	imageWidth = image.get_width()
 	imageHeight = image.get_height()
 	topLeftX = 500 - round(imageWidth / 2)
-	topLeftY = 300 - rount(imageHeight / 2)
+	topLeftY = 300 - round(imageHeight / 2)
 	game.DISPLAYSURF.blit(image, (topLeftX, topLeftY))
 
 	fontObj = pygame.font.Font('freesansbold.ttf',28)
