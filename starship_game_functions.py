@@ -276,50 +276,6 @@ def gameStatus(game):
 			return False
 			
 	return True
-
-'''	
-def finalScreen(game):
-	if game.endCondition == -1:
-		# Game Over
-		game.DISPLAYSURF.fill(game.BG_COLOR)
-		fontObj = pygame.font.Font('freesansbold.ttf',48)
-		textSurfaceObj = fontObj.render('GAME OVER!', True, (255,255,255))
-		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (500,300)
-		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-		pygame.display.update()
-		time.sleep(5)
-	elif game.endCondition == 1:
-		# Player 1 Wins
-		game.DISPLAYSURF.fill(game.BG_COLOR)
-		fontObj = pygame.font.Font('freesansbold.ttf',48)
-		textSurfaceObj = fontObj.render('PLAYER 1 WINS!', True, (255,255,255))
-		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (500,300)
-		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-		pygame.display.update()
-		time.sleep(5)
-	elif game.endCondition == 2:
-		# Player 2 Wins
-		game.DISPLAYSURF.fill(game.BG_COLOR)
-		fontObj = pygame.font.Font('freesansbold.ttf',48)
-		textSurfaceObj = fontObj.render('PLAYER 2 WINS!', True, (255,255,255))
-		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (500,300)
-		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-		pygame.display.update()
-		time.sleep(5)
-	elif game.endCondition == 0:
-		# Error! Unexpected Game Exit
-		game.DISPLAYSURF.fill(game.BG_COLOR)
-		fontObj = pygame.font.Font('freesansbold.ttf',48)
-		textSurfaceObj = fontObj.render('Error. Unexpected Game Exit', True, (255,255,255))
-		textRectObj = textSurfaceObj.get_rect()
-		textRectObj.center = (500,300)
-		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
-		pygame.display.update()
-		time.sleep(5)
-'''
 	
 def handleKeyboard(player, event):
 	if player.userControl == Control.Keyboard_A:
