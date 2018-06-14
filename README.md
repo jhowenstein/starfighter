@@ -2,11 +2,11 @@
 
 Computer Game based on the classic video game Space Invaders with expanded features.
 
-This project was started in large part to gain further experience implementing object oriented software design patterns while working through the book: http://www.gameprogrammingpatterns.com/
+This project was initially started to practice implementing object oriented software design patterns while working through the book: http://www.gameprogrammingpatterns.com/
 
 Game Dependencies:
-*Python 3 interpreter
-*PyGame (https://www.pygame.org/wiki/GettingStarted)
+* Python 3 interpreter
+* PyGame (https://www.pygame.org/wiki/GettingStarted)
 
 Supported Platforms:
 * Raspberry Pi (Raspberian)
@@ -23,4 +23,4 @@ Game Modes:
   * Survival: Currently the best developed game mode. The game continues forever until the user is eliminated. Time survived, enemies destroy, and rounds completed are tracked displayed at the end of the game.
   * Campaign: Intended to be a 10-level campaign. Turns out creating levels that are Fun and Challenging is hard. Only 4 levels currently functional.
 * Two Player:
-  * Player vs. Player. Players can choose thier ship type of choice (heavy, medium, light) and duel with a friend. 
+  * Player vs. Player: Players can choose thier ship type of choice (heavy, medium, light) and duel with a friend. 
