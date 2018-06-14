@@ -291,6 +291,38 @@ def finalScreen(game):
 		pygame.display.update()
 		time.sleep(3)
 
+def creditScreen(game):
+	game.DISPLAYSURF.fill(game.BG_COLOR)
+	fontObj = pygame.font.Font('freesansbold.ttf',40)
+	textSurfaceObj = fontObj.render('Credits', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	textSurfaceObj = fontObj.render('Game Art:', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,350)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('https://opengameart.org/content/simple-spaceship-0', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,370)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('https://opengameart.org/content/2d-spaceship-sprites-with-engines', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,390)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',24)
+	textSurfaceObj = fontObj.render('Created By: J. Howenstein', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,450)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	pygame.display.update()
+	time.sleep(1.5)
 
 def buttonSelect(button, mouseX, mouseY):
 	if (mouseX > button.left and mouseX < button.right and mouseY > button.top and mouseY < button.bottom):

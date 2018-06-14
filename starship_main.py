@@ -75,5 +75,7 @@ finalScreen(game)
 if game.spGameType == 1:
 	survivalFinalScreen(game)
 
+creditScreen(game)
+
 pygame.quit()
 sys.exit()
