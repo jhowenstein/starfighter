@@ -1,4 +1,4 @@
-# starship_PvP
+# starfighter
 
 Computer Game based on the classic video game Space Invaders with expanded features.
 
