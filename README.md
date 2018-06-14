@@ -12,7 +12,7 @@ Supported Platforms:
 * Raspberry Pi (Raspberian)
 * Linux
 * Windows (Not tested but should work with dependencies installed)
-Note: Mac currently not functional due to bug preventing PyGame from correctly capturing user input
+* Note: Mac currently not functional due to bug preventing PyGame from correctly capturing user input
 
 This game was developed with the Raspberry Pi (Running the Raspberian Linux distrubition) as the target platform.
 
