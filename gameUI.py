@@ -164,7 +164,7 @@ def levelSelect(game):
 
 	WHITE = (255, 255, 255)
 	BLUE = (0, 0, 255)
-	LESS_BLUE = (0, 0, 127)
+	LESS_BLUE = (0, 0, 63)
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	# Level Select Header Object
 	fontObj = pygame.font.Font('freesansbold.ttf',36)

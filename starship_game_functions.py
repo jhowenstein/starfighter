@@ -276,7 +276,8 @@ def gameStatus(game):
 			return False
 			
 	return True
-	
+
+'''	
 def finalScreen(game):
 	if game.endCondition == -1:
 		# Game Over
@@ -318,6 +319,7 @@ def finalScreen(game):
 		game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 		pygame.display.update()
 		time.sleep(5)
+'''
 	
 def handleKeyboard(player, event):
 	if player.userControl == Control.Keyboard_A:

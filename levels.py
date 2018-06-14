@@ -230,31 +230,6 @@ class Level3(Level):
 			command.append(5)
 		return command
 
-'''
-class Level4(Level):
-	def __init__(self, game):
-		game.AI = True
-
-		game.objectList.append(LightShip(3, 300, 300, 1, game))
-		enemy_2 = LightShip(4, 400, 300, 1, game)
-		enemy_3 = LightShip(5, 500, 300, 1, game)
-		enemy_4 = LightShip(6, 600, 300, 1, game)
-		enemy_5 = LightShip(7, 700, 300, 1, game)
-
-		enemy_6 = LightShip(13, 250, 200, 1, game)
-		enemy_7 = LightShip(12, 350, 200, 1, game)
-		enemy_8 = LightShip(11, 450, 200, 1, game)
-		enemy_9 = LightShip(10, 550, 200, 1, game)
-		enemy_10 = LightShip(9, 650, 200, 1, game)
-		enemy_11 = LightShip(8, 750, 200, 1, game)
-
-		enemy_12 = LightShip(14, 300, 100, 1, game)
-		enemy_13 = LightShip(15, 400, 100, 1, game)
-		enemy_14 = LightShip(16, 500, 100, 1, game)
-		enemy_15 = LightShip(17, 600, 100, 1, game)
-		enemy_16 = LightShip(18, 700, 100, 1, game)
-'''
-
 class Level4(Level):
 	def __init__(self, game):
 		game.AI = True
