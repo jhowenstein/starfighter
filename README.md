@@ -24,3 +24,8 @@ Game Modes:
   * Campaign: Intended to be a 10-level campaign. Turns out creating levels that are Fun and Challenging is hard. Only 4 levels currently functional.
 * Two Player:
   * Player vs. Player: Players can choose thier ship type of choice (heavy, medium, light) and duel with a friend. 
+
+Instructions to Run:
+* Download all files into a local directory
+* Ensure depencies have been installed
+* From the terminal, Run "starship_main.py" using the python3 interpreter (ex. python3 starship_main.py)
