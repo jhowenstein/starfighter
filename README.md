@@ -1,13 +1,24 @@
 # starship_PvP
 
-Computer Game based on the classic game Space Invaders with expanded features.
+Computer Game based on the classic video game Space Invaders with expanded features.
 
-This project was started in large part to gain further experience implementing object oriented software design patterns.
+This project was started in large part to gain further experience implementing object oriented software design patterns while working through the book: http://www.gameprogrammingpatterns.com/
 
-Currently developing as I work through this book: http://www.gameprogrammingpatterns.com/
+Game Dependencies:
+*Python 3 interpreter
+*PyGame (https://www.pygame.org/wiki/GettingStarted)
 
-All code is being developed to run on a Raspberry Pi or Linux environment using PyGame.
+Supported Platforms:
+*Raspberry Pi (Raspberian)
+*Linux
+*Windows (Not tested but should work with dependencies installed)
+Note: Mac currently not functional due to bug preventing PyGame from correctly capturing user input
 
-The primary game code is written in Python.
+This game was developed with the Raspberry Pi (Running the Raspberian Linux distrubition) as the target platform.
 
-Future development includes building two USB game controllers that will interface with the Raspberry Pi with firmware written in C++.
+All code is written in Python 3.
+
+Game Modes:
+*Survival: Currently the best developed game mode. The game continues forever until the user is eliminated. Time survived, enemies destroy, and rounds completed are tracked displayed at the end of the game.
+*Campaign: Intended to be a 10-level campaign. Turns out creating levels that are Fun and Challenging is hard. Only 4 levels currently functional.
+*Two Player: Player vs. Player. Players can choose thier ship type of choice (heavy, medium, light) and duel with a friend. 
