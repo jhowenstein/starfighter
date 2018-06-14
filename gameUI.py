@@ -292,6 +292,7 @@ def finalScreen(game):
 		time.sleep(3)
 
 def creditScreen(game):
+	WHITE = (255, 255, 255)
 	game.DISPLAYSURF.fill(game.BG_COLOR)
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render('Credits', True, WHITE)
