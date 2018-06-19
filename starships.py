@@ -201,7 +201,7 @@ class Ship(object):
 		adjX = self.shipX - self.halfWidth  # Adjustment to center the ship image for rendering
 		game.DISPLAYSURF.blit(self.shipImg, (adjX, self.shipY))
 		
-		game.incidenceMap[self.shipY:(self.shipY + self.height),adjX:(adjX + self.width)] = self.ID
+		game.incidenceMap[int(self.shipY):int(self.shipY + self.height),int(adjX):int(adjX + self.width)] = self.ID
 		
 		self.commandList = []
 		return True
