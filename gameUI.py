@@ -462,7 +462,14 @@ def displayPlayerOneControls(game):
 	WHITE = (255, 255, 255)
 	
 	game.DISPLAYSURF.fill(game.BG_COLOR)
-	image = pygame.image.load('keyboard.jpg')
+
+	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	textSurfaceObj = fontObj.render('Player 1 Game Controls', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	image = pygame.image.load('keyboard1.jpg')
 	imageWidth = image.get_width()
 	imageHeight = image.get_height()
 	topLeftX = 500 - round(imageWidth / 2)
@@ -486,7 +493,40 @@ def displayPlayerOneControls(game):
 			elif event.type == MOUSEBUTTONUP:
 				return
 
+def displayPlayerTwoControls(game):
+	WHITE = (255, 255, 255)
+	
+	game.DISPLAYSURF.fill(game.BG_COLOR)
 
+	fontObj = pygame.font.Font('freesansbold.ttf',36)
+	textSurfaceObj = fontObj.render('Player 2 Game Controls', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,150)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	image = pygame.image.load('keyboard2.jpg')
+	imageWidth = image.get_width()
+	imageHeight = image.get_height()
+	topLeftX = 500 - round(imageWidth / 2)
+	topLeftY = 300 - round(imageHeight / 2)
+	game.DISPLAYSURF.blit(image, (topLeftX, topLeftY))
+
+	fontObj = pygame.font.Font('freesansbold.ttf',28)
+	textSurfaceObj = fontObj.render('Click to Continue', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (500,500)
+	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	pygame.display.update()
+
+	while True:
+		eventList = pygame.event.get()
+		for event in eventList:
+			if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
+				pygame.quit()
+				sys.exit()
+			elif event.type == MOUSEBUTTONUP:
+				return
 
 
 

@@ -68,7 +68,7 @@ elif game.numberPlayers == 2:
 		game.player2.ship.setImage('ship3.png')
 		game.player2.ship.flipImage()
 	displayPlayerOneControls(game)
-	#displayPlayerTwoControls(game)
+	displayPlayerTwoControls(game)
 	playGame(game)
 
 finalScreen(game)
