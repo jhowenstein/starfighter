@@ -458,7 +458,7 @@ def playerTwoSelectShip(game):
 					game.player2.shipType = 3
 					return
 
-def displayControls(game):
+def displayPlayerOneControls(game):
 	WHITE = (255, 255, 255)
 	
 	game.DISPLAYSURF.fill(game.BG_COLOR)
