@@ -337,6 +337,9 @@ def playerOneSelectShip(game):
 	
 	WHITE = (255, 255, 255)
 
+	TEXT_OFFSET1 = 100
+	TEXT_OFFSET2 = TEXT_OFFSET1 + 25
+
 	option1 = pygame.image.load('ship1.png')
 	halfWidth1 = round(option1.get_width() / 2)
 	halfHeight1 = round(option1.get_height() / 2)
@@ -365,6 +368,36 @@ def playerOneSelectShip(game):
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Fast', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], yLoc[0] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: Low', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], yLoc[0] + TEXT_OFFSET2)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Medium', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[1], yLoc[1] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: Medium', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[1], yLoc[1] + TEXT_OFFSET2)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Slow', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[2], yLoc[2] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: High', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[2], yLoc[2] + TEXT_OFFSET2)
 
 	# Ship option 1
 	game.DISPLAYSURF.blit(option1, (topLeft1_X, topLeft1_Y))
@@ -402,6 +435,9 @@ def playerTwoSelectShip(game):
 	
 	WHITE = (255, 255, 255)
 
+	TEXT_OFFSET1 = 100
+	TEXT_OFFSET2 = TEXT_OFFSET1 + 25
+
 	option1 = pygame.image.load('ship1.png')
 	halfWidth1 = round(option1.get_width() / 2)
 	halfHeight1 = round(option1.get_height() / 2)
@@ -430,6 +466,36 @@ def playerTwoSelectShip(game):
 	textRectObj = textSurfaceObj.get_rect()
 	textRectObj.center = (500,150)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Fast', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], yLoc[0] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: Low', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[0], yLoc[0] + TEXT_OFFSET2)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Medium', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[1], yLoc[1] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: Medium', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[1], yLoc[1] + TEXT_OFFSET2)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Speed: Slow', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[2], yLoc[2] + TEXT_OFFSET1)
+
+	fontObj = pygame.font.Font('freesansbold.ttf',18)
+	textSurfaceObj = fontObj.render('Damage: High', True, WHITE)
+	textRectObj = textSurfaceObj.get_rect()
+	textRectObj.center = (xLoc[2], yLoc[2] + TEXT_OFFSET2)
 
 	game.DISPLAYSURF.blit(option1, (topLeft1_X, topLeft1_Y))
 	# Ship option 2
