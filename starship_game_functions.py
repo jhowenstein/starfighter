@@ -428,7 +428,7 @@ def updateSinglePlayerScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 
@@ -448,7 +448,7 @@ def updateTwoPlayerScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[1], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[1], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	# Player 1 health (X center = 700)
@@ -461,7 +461,7 @@ def updateTwoPlayerScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.player2.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 
@@ -483,7 +483,7 @@ def updateSurvivorScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.survivor.roundCount), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[0], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	
 	# Enemies killed
@@ -496,7 +496,7 @@ def updateSurvivorScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.enemiesDestroyed), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[1], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[1], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 	
 	# User health (X center = 700)
@@ -509,7 +509,7 @@ def updateSurvivorScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(game.player1.ship.health), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[2], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[2], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 	# Add game time display here (X center = 100)
@@ -522,7 +522,7 @@ def updateSurvivorScoreboard(game):
 	fontObj = pygame.font.Font('freesansbold.ttf',40)
 	textSurfaceObj = fontObj.render(str(displayTime), True, (255,255,255))
 	textRectObj = textSurfaceObj.get_rect()
-	textRectObj.center = ( xLoc[3], game.WINDOWHEIGHT + 50)
+	textRectObj.center = ( xLoc[3], game.WINDOWHEIGHT + 55)
 	game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
 
 def survivalFinalScreen(game):

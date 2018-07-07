@@ -34,13 +34,13 @@ if game.numberPlayers == 1:
 	game.spGameType = gameTypeSelect(game)
 	if game.spGameType == 1:
 		game.player1.ship = BasicShip(1,500,500,0,game)
-		displayControls(game)
+		displayPlayerOneControls(game)
 		playSurvival(game)
 	elif game.spGameType == 2:
 		lvl = levelSelect(game)
 		game.setLevel(lvl)
 		game.player1.ship = BasicShip(1,500,500,0,game)
-		displayControls(game)
+		displayPlayerOneControls(game)
 		playGame(game)
 elif game.numberPlayers == 2:
 	playerOneSelectShip(game)
@@ -67,7 +67,8 @@ elif game.numberPlayers == 2:
 		game.player2.ship = HeavyShip(2,500,100,1,game)
 		game.player2.ship.setImage('ship3.png')
 		game.player2.ship.flipImage()
-	displayControls(game)
+	displayPlayerOneControls(game)
+	#displayPlayerTwoControls(game)
 	playGame(game)
 
 finalScreen(game)
