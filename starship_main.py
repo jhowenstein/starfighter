@@ -31,17 +31,29 @@ numberPlayers = playerModeSelect(game)
 game.setPlayers(numberPlayers)
 
 if game.numberPlayers == 1:
-	game.spGameType = gameTypeSelect(game)
-	if game.spGameType == 1:
-		game.player1.ship = BasicShip(1,500,500,0,game)
-		displayPlayerOneControls(game)
-		playSurvival(game)
-	elif game.spGameType == 2:
-		lvl = levelSelect(game)
-		game.setLevel(lvl)
-		game.player1.ship = BasicShip(1,500,500,0,game)
-		displayPlayerOneControls(game)
-		playGame(game)
+	while True:
+		game.spGameType = gameTypeSelect(game)
+		if game.spGameType == 1:
+			game.player1.ship = BasicShip(1,500,500,0,game)
+			displayPlayerOneControls(game)
+			playSurvival(game)
+			break
+		elif game.spGameType == 2:
+			fontObj = pygame.font.Font('freesansbold.ttf',24)
+			textSurfaceObj = fontObj.render('Sorry! Campaign Unavailable!', True, (255,255,255))
+			textRectObj = textSurfaceObj.get_rect()
+			textRectObj.center = (650,350)
+			game.DISPLAYSURF.blit(textSurfaceObj, textRectObj)
+			pygame.display.update()
+			time.sleep(1.5)
+			'''s
+			lvl = levelSelect(game)
+			game.setLevel(lvl)
+			game.player1.ship = BasicShip(1,500,500,0,game)
+			displayPlayerOneControls(game)
+			playGame(game)
+			break
+			'''
 elif game.numberPlayers == 2:
 	playerOneSelectShip(game)
 	if game.player1.shipType == 1:
