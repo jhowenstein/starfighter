@@ -35,3 +35,4 @@ Future Development:
 * Complete Campaign Mode
 * Add additional weapon types to be unlocked or purchased as the game progresses
 * Additional options for ship functionality and performance customization
+* Add unlockable power-ups such as shields, temporary boosted damage or speed
