@@ -30,3 +30,8 @@ Instructions to Run:
 * Download all files into a local directory
 * Ensure depencies have been installed
 * From the terminal, Run "starship_main.py" using the python3 interpreter (ex. python3 starship_main.py)
+
+Future Development:
+* Complete Campaign Mode
+* Add additional weapon types to be unlocked or purchased as the game progresses
+* Additional options for ship functionality and performance customization
