@@ -37,7 +37,7 @@ class Projectile(object):
 		if self.incidenceBuffer > 0:
 			self.incidenceBuffer -= 1
 		else:
-			locationVal = game.incidenceMap[self.locY, self.locX]
+			locationVal = game.incidenceMap[int(self.locY), int(self.locX)]
 			if locationVal > 0:
 				game.impactList.append(ImpactObject(locationVal, self.damage))
 				self.color = (255, 0 , 0)
